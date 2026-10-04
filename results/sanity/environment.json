@@ -1,0 +1,41 @@
+{
+  "python": "3.13.6",
+  "torch": "2.11.0",
+  "torchvision": "0.26.0",
+  "numpy": "2.3.2",
+  "pandas": "2.3.3",
+  "os": "macOS-15.6.1-arm64-arm-64bit-Mach-O",
+  "machine": "arm64",
+  "device": "mps",
+  "mps_available": true,
+  "mps_built": true,
+  "cuda_available": false,
+  "determinism": {
+    "torch.manual_seed": 0,
+    "use_deterministic_algorithms": false,
+    "note": "MPS (if used) does not guarantee bitwise determinism; same backend for all 10 runs"
+  },
+  "experiment_input_commit": "e78a2b735352b6456a91a807897adc4623f3298e",
+  "split_sha256": {
+    "patient_disjoint_original.csv": "61bec5aaf9a5f4fce4adf89b186ffd6479eb0f6095ee20b8f60ef44274a3e49e",
+    "imagelevel_seed11.csv": "e8b0442c107396fe66a989b8d448aa0e524c1c554823a711db3cc84beeee74f2"
+  },
+  "config": {
+    "model": "torchvision.resnet50",
+    "weights": "IMAGENET1K_V1",
+    "input": 224,
+    "batch_size": 32,
+    "epochs": 10,
+    "optimizer": "AdamW",
+    "lr": 0.0001,
+    "weight_decay": 0.0001,
+    "schedule": "cosine (per-iteration, T_max=total steps, eta_min=0)",
+    "loss": "cross_entropy (no class weights)",
+    "augmentation": "hflip p=0.5; rotation uniform(-10,10) deg bilinear fill 0",
+    "train_seed": 0,
+    "early_stopping": false,
+    "model_selection": "none (final epoch)",
+    "eval_batch_size": 64,
+    "normalisation": "ImageNet mean/std on 3-channel replicate"
+  }
+}

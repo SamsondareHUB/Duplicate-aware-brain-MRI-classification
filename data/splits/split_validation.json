@@ -1,0 +1,229 @@
+{
+  "all_checks_pass": true,
+  "checks": {
+    "A_rows_3064_each_image_once": true,
+    "B_rows_3064_each_image_once": true,
+    "A_B_folds_are_1_to_5": true,
+    "B_fold_class_matrix_equals_A": true,
+    "B_fold_sizes_equal_A": true,
+    "A_equals_manifest_original_folds": true,
+    "A_patient_in_multiple_folds_zero": true,
+    "A_exposure_all_zero": true,
+    "B_deterministic_regeneration_identical": true,
+    "each_patient_has_exactly_one_class": true,
+    "B_differs_from_A": true
+  },
+  "versions": {
+    "seed": 11,
+    "numpy": "2.3.2",
+    "pandas": "2.3.3",
+    "python": "3.13.6",
+    "rng": "numpy.random.default_rng(SeedSequence([seed, class_label]))"
+  },
+  "sha256": {
+    "patient_disjoint_original.csv": "61bec5aaf9a5f4fce4adf89b186ffd6479eb0f6095ee20b8f60ef44274a3e49e",
+    "imagelevel_seed11.csv": "e8b0442c107396fe66a989b8d448aa0e524c1c554823a711db3cc84beeee74f2"
+  },
+  "fold_sizes": {
+    "A": {
+      "1": 542,
+      "2": 679,
+      "3": 572,
+      "4": 628,
+      "5": 643
+    },
+    "B": {
+      "1": 542,
+      "2": 679,
+      "3": 572,
+      "4": 628,
+      "5": 643
+    }
+  },
+  "fold_x_class_A": {
+    "1": {
+      "1": 112,
+      "2": 245,
+      "3": 185
+    },
+    "2": {
+      "1": 167,
+      "2": 338,
+      "3": 174
+    },
+    "3": {
+      "1": 139,
+      "2": 231,
+      "3": 202
+    },
+    "4": {
+      "1": 124,
+      "2": 325,
+      "3": 179
+    },
+    "5": {
+      "1": 166,
+      "2": 287,
+      "3": 190
+    }
+  },
+  "fold_x_class_B": {
+    "1": {
+      "1": 112,
+      "2": 245,
+      "3": 185
+    },
+    "2": {
+      "1": 167,
+      "2": 338,
+      "3": 174
+    },
+    "3": {
+      "1": 139,
+      "2": 231,
+      "3": 202
+    },
+    "4": {
+      "1": 124,
+      "2": 325,
+      "3": 179
+    },
+    "5": {
+      "1": 166,
+      "2": 287,
+      "3": 190
+    }
+  },
+  "same_fold_A_vs_B": {
+    "observed_images": 658,
+    "observed_fraction": 0.2148,
+    "null_expected_images_matched_margins": 623.0,
+    "null_expected_fraction_matched_margins": 0.2033,
+    "null_simulated_mean_images_2000_seeds_1000_to_2999": 623.28,
+    "null_simulated_sd_images": 22.43,
+    "observed_z_vs_simulated_null": 1.55,
+    "note": "informational, not pass/fail"
+  },
+  "patient_overlap_A": {
+    "patients_in_more_than_one_test_fold": 0,
+    "n_patients": 233,
+    "per_fold": {
+      "1": {
+        "test_images": 542,
+        "test_patients": 45,
+        "test_patients_also_in_train": 0,
+        "train_patients": 188
+      },
+      "2": {
+        "test_images": 679,
+        "test_patients": 46,
+        "test_patients_also_in_train": 0,
+        "train_patients": 187
+      },
+      "3": {
+        "test_images": 572,
+        "test_patients": 48,
+        "test_patients_also_in_train": 0,
+        "train_patients": 185
+      },
+      "4": {
+        "test_images": 628,
+        "test_patients": 47,
+        "test_patients_also_in_train": 0,
+        "train_patients": 186
+      },
+      "5": {
+        "test_images": 643,
+        "test_patients": 47,
+        "test_patients_also_in_train": 0,
+        "train_patients": 186
+      }
+    }
+  },
+  "patient_overlap_B": {
+    "patients_in_more_than_one_test_fold": 224,
+    "n_patients": 233,
+    "per_fold": {
+      "1": {
+        "test_images": 542,
+        "test_patients": 185,
+        "test_patients_also_in_train": 182,
+        "train_patients": 230
+      },
+      "2": {
+        "test_images": 679,
+        "test_patients": 203,
+        "test_patients_also_in_train": 201,
+        "train_patients": 231
+      },
+      "3": {
+        "test_images": 572,
+        "test_patients": 191,
+        "test_patients_also_in_train": 190,
+        "train_patients": 232
+      },
+      "4": {
+        "test_images": 628,
+        "test_patients": 189,
+        "test_patients_also_in_train": 187,
+        "train_patients": 231
+      },
+      "5": {
+        "test_images": 643,
+        "test_patients": 201,
+        "test_patients_also_in_train": 200,
+        "train_patients": 232
+      }
+    }
+  },
+  "exposure_A": {
+    "n_images": 3064,
+    "n_single_slice_patient_images": 7,
+    "has_same_patient_train_slice_images": 0,
+    "has_same_patient_train_slice_fraction": 0.0,
+    "frac_other_train_mean_excl_single": 0.0,
+    "frac_other_train_quantiles_excl_single": {
+      "0.0": 0.0,
+      "0.05": 0.0,
+      "0.25": 0.0,
+      "0.5": 0.0,
+      "0.75": 0.0,
+      "0.95": 0.0,
+      "1.0": 0.0
+    },
+    "n_other_train_mean": 0.0,
+    "n_other_train_quantiles": {
+      "0.0": 0.0,
+      "0.25": 0.0,
+      "0.5": 0.0,
+      "0.75": 0.0,
+      "1.0": 0.0
+    },
+    "n_other_train_max": 0
+  },
+  "exposure_B": {
+    "n_images": 3064,
+    "n_single_slice_patient_images": 7,
+    "has_same_patient_train_slice_images": 3051,
+    "has_same_patient_train_slice_fraction": 0.9958,
+    "frac_other_train_mean_excl_single": 0.7949,
+    "frac_other_train_quantiles_excl_single": {
+      "0.0": 0.0,
+      "0.05": 0.6087,
+      "0.25": 0.7222,
+      "0.5": 0.8,
+      "0.75": 0.875,
+      "0.95": 1.0,
+      "1.0": 1.0
+    },
+    "n_other_train_mean": 13.174,
+    "n_other_train_quantiles": {
+      "0.0": 0.0,
+      "0.25": 9.0,
+      "0.5": 13.0,
+      "0.75": 17.0,
+      "1.0": 34.0
+    },
+    "n_other_train_max": 34
+  }
+}

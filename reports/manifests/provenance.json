@@ -1,0 +1,72 @@
+{
+  "article_id": 1512427,
+  "version": 8,
+  "published": "2024-12-21",
+  "license": "CC BY 4.0",
+  "doi": "https://doi.org/10.6084/m9.figshare.1512427",
+  "api": "https://api.figshare.com/v2/articles/1512427",
+  "all_md5_match": true,
+  "manifest_written_utc": "2026-10-04T05:33:57.977109+00:00",
+  "files": [
+    {
+      "filename": "brainTumorDataPublic_1-766.zip",
+      "figshare_file_id": 3381290,
+      "size_bytes": 214401279,
+      "expected_md5": "74b949ad33f042e6e103523091cd1428",
+      "observed_md5": "74b949ad33f042e6e103523091cd1428",
+      "md5_match": true,
+      "file_mtime_utc": "2026-10-04T05:32:54.142863+00:00",
+      "source_url": "https://ndownloader.figshare.com/files/3381290"
+    },
+    {
+      "filename": "brainTumorDataPublic_767-1532.zip",
+      "figshare_file_id": 3381296,
+      "size_bytes": 217848429,
+      "expected_md5": "7e8a875500d2c8a346f270538e29890e",
+      "observed_md5": "7e8a875500d2c8a346f270538e29890e",
+      "md5_match": true,
+      "file_mtime_utc": "2026-10-04T05:32:59.989854+00:00",
+      "source_url": "https://ndownloader.figshare.com/files/3381296"
+    },
+    {
+      "filename": "brainTumorDataPublic_1533-2298.zip",
+      "figshare_file_id": 3381293,
+      "size_bytes": 215563856,
+      "expected_md5": "8227bf6080cb71f15a88be8d25c79ae7",
+      "observed_md5": "8227bf6080cb71f15a88be8d25c79ae7",
+      "md5_match": true,
+      "file_mtime_utc": "2026-10-04T05:32:58.349937+00:00",
+      "source_url": "https://ndownloader.figshare.com/files/3381293"
+    },
+    {
+      "filename": "brainTumorDataPublic_2299-3064.zip",
+      "figshare_file_id": 3381302,
+      "size_bytes": 231679762,
+      "expected_md5": "b378a80d6174e5317d59eb28430c6652",
+      "observed_md5": "b378a80d6174e5317d59eb28430c6652",
+      "md5_match": true,
+      "file_mtime_utc": "2026-10-04T05:32:54.333710+00:00",
+      "source_url": "https://ndownloader.figshare.com/files/3381302"
+    },
+    {
+      "filename": "cvind.mat",
+      "figshare_file_id": 7005344,
+      "size_bytes": 5736,
+      "expected_md5": "5ea82eb3212c9fcb84290ccf0beb486d",
+      "observed_md5": "5ea82eb3212c9fcb84290ccf0beb486d",
+      "md5_match": true,
+      "file_mtime_utc": "2026-10-04T05:31:36.939605+00:00",
+      "source_url": "https://ndownloader.figshare.com/files/7005344"
+    },
+    {
+      "filename": "README_2024.txt",
+      "figshare_file_id": 51340418,
+      "size_bytes": 3303,
+      "expected_md5": "4188f7c30957e9673c3611613071bd6e",
+      "observed_md5": "4188f7c30957e9673c3611613071bd6e",
+      "md5_match": true,
+      "file_mtime_utc": "2026-10-04T05:31:36.921832+00:00",
+      "source_url": "https://ndownloader.figshare.com/files/51340418"
+    }
+  ]
+}

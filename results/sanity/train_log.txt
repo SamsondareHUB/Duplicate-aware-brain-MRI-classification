@@ -1,0 +1,156 @@
+{
+ "python": "3.13.6",
+ "torch": "2.11.0",
+ "torchvision": "0.26.0",
+ "numpy": "2.3.2",
+ "pandas": "2.3.3",
+ "os": "macOS-15.6.1-arm64-arm-64bit-Mach-O",
+ "machine": "arm64",
+ "device": "mps",
+ "mps_available": true,
+ "mps_built": true,
+ "cuda_available": false,
+ "determinism": {
+  "torch.manual_seed": 0,
+  "use_deterministic_algorithms": false,
+  "note": "MPS (if used) does not guarantee bitwise determinism; same backend for all 10 runs"
+ },
+ "experiment_input_commit": "e78a2b735352b6456a91a807897adc4623f3298e",
+ "split_sha256": {
+  "patient_disjoint_original.csv": "61bec5aaf9a5f4fce4adf89b186ffd6479eb0f6095ee20b8f60ef44274a3e49e",
+  "imagelevel_seed11.csv": "e8b0442c107396fe66a989b8d448aa0e524c1c554823a711db3cc84beeee74f2"
+ },
+ "config": {
+  "model": "torchvision.resnet50",
+  "weights": "IMAGENET1K_V1",
+  "input": 224,
+  "batch_size": 32,
+  "epochs": 10,
+  "optimizer": "AdamW",
+  "lr": 0.0001,
+  "weight_decay": 0.0001,
+  "schedule": "cosine (per-iteration, T_max=total steps, eta_min=0)",
+  "loss": "cross_entropy (no class weights)",
+  "augmentation": "hflip p=0.5; rotation uniform(-10,10) deg bilinear fill 0",
+  "train_seed": 0,
+  "early_stopping": false,
+  "model_selection": "none (final epoch)",
+  "eval_batch_size": 64,
+  "normalisation": "ImageNet mean/std on 3-channel replicate"
+ }
+}
+/Users/vv/ResearchScratch/Duplicate-aware-brain-MRI-classification/scripts/run_sanity.py:65: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:219.)
+  Xt = torch.from_numpy(np.asarray(X))
+Downloading: "https://download.pytorch.org/models/resnet50-0676ba61.pth" to /Users/vv/.cache/torch/hub/checkpoints/resnet50-0676ba61.pth
+  0%|          | 0.00/97.8M [00:00<?, ?B/s]  1%|          | 896k/97.8M [00:00<00:11, 9.12MB/s]  3%|▎         | 2.75M/97.8M [00:00<00:06, 15.0MB/s]  5%|▌         | 5.00M/97.8M [00:00<00:05, 18.7MB/s]  8%|▊         | 7.50M/97.8M [00:00<00:04, 21.5MB/s] 10%|█         | 10.2M/97.8M [00:00<00:03, 23.9MB/s] 13%|█▎        | 12.6M/97.8M [00:00<00:04, 19.3MB/s] 16%|█▌        | 15.2M/97.8M [00:00<00:04, 21.4MB/s] 18%|█▊        | 18.0M/97.8M [00:00<00:03, 23.4MB/s] 21%|██        | 20.5M/97.8M [00:00<00:03, 24.0MB/s] 24%|██▍       | 23.4M/97.8M [00:01<00:03, 25.7MB/s] 27%|██▋       | 26.0M/97.8M [00:01<00:03, 23.0MB/s] 29%|██▉       | 28.5M/97.8M [00:01<00:03, 23.8MB/s] 32%|███▏      | 31.2M/97.8M [00:01<00:02, 25.1MB/s] 35%|███▍      | 34.0M/97.8M [00:01<00:02, 25.9MB/s] 37%|███▋      | 36.6M/97.8M [00:01<00:04, 15.3MB/s] 40%|████      | 39.1M/97.8M [00:02<00:03, 17.3MB/s] 42%|████▏     | 41.2M/97.8M [00:02<00:06, 9.30MB/s] 44%|████▍     | 42.9M/97.8M [00:02<00:08, 7.16MB/s] 45%|████▌     | 44.1M/97.8M [00:03<00:09, 6.05MB/s] 46%|████▌     | 45.1M/97.8M [00:03<00:08, 6.38MB/s] 47%|████▋     | 46.4M/97.8M [00:03<00:07, 7.28MB/s] 49%|████▊     | 47.5M/97.8M [00:03<00:08, 6.07MB/s] 50%|████▉     | 48.5M/97.8M [00:04<00:08, 6.42MB/s] 51%|█████     | 49.5M/97.8M [00:04<00:07, 6.93MB/s] 52%|█████▏    | 50.8M/97.8M [00:04<00:06, 7.98MB/s] 53%|█████▎    | 52.0M/97.8M [00:04<00:05, 9.05MB/s] 55%|█████▍    | 53.4M/97.8M [00:04<00:04, 10.2MB/s] 56%|█████▌    | 54.9M/97.8M [00:04<00:03, 11.5MB/s] 58%|█████▊    | 56.4M/97.8M [00:04<00:03, 12.5MB/s] 59%|█████▉    | 57.9M/97.8M [00:04<00:03, 13.3MB/s] 61%|██████    | 59.8M/97.8M [00:04<00:02, 14.9MB/s] 63%|██████▎   | 61.9M/97.8M [00:04<00:02, 16.6MB/s] 65%|██████▌   | 63.9M/97.8M [00:05<00:01, 17.8MB/s] 68%|██████▊   | 66.1M/97.8M [00:05<00:01, 18.8MB/s] 70%|██████▉   | 68.1M/97.8M [00:05<00:01, 19.3MB/s] 72%|███████▏  | 70.1M/97.8M [00:05<00:01, 19.7MB/s] 74%|███████▍  | 72.1M/97.8M [00:05<00:01, 19.8MB/s] 76%|███████▌  | 74.1M/97.8M [00:05<00:01, 20.0MB/s] 78%|███████▊  | 76.1M/97.8M [00:05<00:01, 20.0MB/s] 80%|███████▉  | 78.1M/97.8M [00:05<00:01, 20.1MB/s] 82%|████████▏ | 80.1M/97.8M [00:05<00:00, 20.2MB/s] 84%|████████▍ | 82.2M/97.8M [00:05<00:00, 20.7MB/s] 86%|████████▋ | 84.5M/97.8M [00:06<00:00, 21.3MB/s] 89%|████████▊ | 86.6M/97.8M [00:06<00:00, 21.4MB/s] 91%|█████████ | 88.8M/97.8M [00:06<00:00, 21.6MB/s] 93%|█████████▎| 91.0M/97.8M [00:06<00:00, 21.9MB/s] 95%|█████████▌| 93.1M/97.8M [00:06<00:00, 21.9MB/s] 98%|█████████▊| 95.4M/97.8M [00:06<00:00, 22.1MB/s]100%|█████████▉| 97.6M/97.8M [00:06<00:00, 22.2MB/s]100%|██████████| 97.8M/97.8M [00:06<00:00, 15.3MB/s]
+[A f1] ep1 loss 0.2798 acc 0.8906 (40s)
+[A f1] ep2 loss 0.1158 acc 0.9572 (77s)
+[A f1] ep3 loss 0.0554 acc 0.9818 (115s)
+[A f1] ep4 loss 0.0377 acc 0.9889 (152s)
+[A f1] ep5 loss 0.0154 acc 0.9964 (188s)
+[A f1] ep6 loss 0.0196 acc 0.9933 (225s)
+[A f1] ep7 loss 0.0066 acc 0.9988 (261s)
+[A f1] ep8 loss 0.0071 acc 0.9980 (298s)
+[A f1] ep9 loss 0.0045 acc 0.9988 (342s)
+[A f1] ep10 loss 0.0042 acc 0.9992 (380s)
+[A f1] DONE test acc 0.9686 runtime 383s
+[B f1] ep1 loss 0.2929 acc 0.8925 (39s)
+[B f1] ep2 loss 0.1216 acc 0.9588 (77s)
+[B f1] ep3 loss 0.0596 acc 0.9822 (116s)
+[B f1] ep4 loss 0.0220 acc 0.9944 (156s)
+[B f1] ep5 loss 0.0133 acc 0.9972 (195s)
+[B f1] ep6 loss 0.0082 acc 0.9984 (232s)
+[B f1] ep7 loss 0.0085 acc 0.9972 (269s)
+[B f1] ep8 loss 0.0045 acc 0.9996 (306s)
+[B f1] ep9 loss 0.0067 acc 0.9980 (347s)
+[B f1] ep10 loss 0.0038 acc 1.0000 (386s)
+[B f1] DONE test acc 0.9797 runtime 388s
+[A f2] ep1 loss 0.2780 acc 0.8960 (37s)
+[A f2] ep2 loss 0.0802 acc 0.9686 (73s)
+[A f2] ep3 loss 0.0564 acc 0.9832 (109s)
+[A f2] ep4 loss 0.0336 acc 0.9899 (144s)
+[A f2] ep5 loss 0.0180 acc 0.9950 (180s)
+[A f2] ep6 loss 0.0084 acc 0.9975 (216s)
+[A f2] ep7 loss 0.0066 acc 0.9987 (252s)
+[A f2] ep8 loss 0.0061 acc 0.9987 (289s)
+[A f2] ep9 loss 0.0037 acc 0.9996 (328s)
+[A f2] ep10 loss 0.0044 acc 0.9992 (365s)
+[A f2] DONE test acc 0.9367 runtime 367s
+[B f2] ep1 loss 0.2869 acc 0.8897 (36s)
+[B f2] ep2 loss 0.0931 acc 0.9677 (73s)
+[B f2] ep3 loss 0.0593 acc 0.9790 (108s)
+[B f2] ep4 loss 0.0489 acc 0.9857 (142s)
+[B f2] ep5 loss 0.0187 acc 0.9950 (177s)
+[B f2] ep6 loss 0.0127 acc 0.9962 (211s)
+[B f2] ep7 loss 0.0077 acc 0.9983 (247s)
+[B f2] ep8 loss 0.0067 acc 0.9987 (283s)
+[B f2] ep9 loss 0.0034 acc 0.9996 (319s)
+[B f2] ep10 loss 0.0089 acc 0.9983 (357s)
+[B f2] DONE test acc 0.9867 runtime 360s
+[A f3] ep1 loss 0.2674 acc 0.8985 (40s)
+[A f3] ep2 loss 0.0855 acc 0.9723 (76s)
+[A f3] ep3 loss 0.0581 acc 0.9843 (114s)
+[A f3] ep4 loss 0.0244 acc 0.9916 (151s)
+[A f3] ep5 loss 0.0263 acc 0.9912 (190s)
+[A f3] ep6 loss 0.0117 acc 0.9976 (226s)
+[A f3] ep7 loss 0.0059 acc 0.9992 (262s)
+[A f3] ep8 loss 0.0031 acc 1.0000 (299s)
+[A f3] ep9 loss 0.0031 acc 0.9996 (335s)
+[A f3] ep10 loss 0.0078 acc 0.9984 (373s)
+[A f3] DONE test acc 0.9423 runtime 375s
+[B f3] ep1 loss 0.2863 acc 0.8888 (38s)
+[B f3] ep2 loss 0.0981 acc 0.9671 (76s)
+[B f3] ep3 loss 0.0573 acc 0.9803 (112s)
+[B f3] ep4 loss 0.0286 acc 0.9888 (148s)
+[B f3] ep5 loss 0.0325 acc 0.9888 (184s)
+[B f3] ep6 loss 0.0159 acc 0.9948 (220s)
+[B f3] ep7 loss 0.0058 acc 0.9992 (256s)
+[B f3] ep8 loss 0.0082 acc 0.9980 (292s)
+[B f3] ep9 loss 0.0049 acc 0.9992 (329s)
+[B f3] ep10 loss 0.0046 acc 0.9992 (365s)
+[B f3] DONE test acc 0.9878 runtime 368s
+[A f4] ep1 loss 0.2822 acc 0.8888 (37s)
+[A f4] ep2 loss 0.1114 acc 0.9602 (73s)
+[A f4] ep3 loss 0.0475 acc 0.9848 (108s)
+[A f4] ep4 loss 0.0413 acc 0.9869 (143s)
+[A f4] ep5 loss 0.0334 acc 0.9901 (179s)
+[A f4] ep6 loss 0.0305 acc 0.9914 (215s)
+[A f4] ep7 loss 0.0249 acc 0.9938 (251s)
+[A f4] ep8 loss 0.0081 acc 0.9984 (291s)
+[A f4] ep9 loss 0.0097 acc 0.9979 (334s)
+[A f4] ep10 loss 0.0062 acc 0.9992 (373s)
+[A f4] DONE test acc 0.9650 runtime 377s
+[B f4] ep1 loss 0.2715 acc 0.8998 (40s)
+[B f4] ep2 loss 0.1060 acc 0.9626 (78s)
+[B f4] ep3 loss 0.0576 acc 0.9799 (116s)
+[B f4] ep4 loss 0.0522 acc 0.9811 (154s)
+[B f4] ep5 loss 0.0293 acc 0.9901 (192s)
+[B f4] ep6 loss 0.0334 acc 0.9918 (229s)
+[B f4] ep7 loss 0.0290 acc 0.9906 (266s)
+[B f4] ep8 loss 0.0152 acc 0.9979 (303s)
+[B f4] ep9 loss 0.0149 acc 0.9979 (339s)
+[B f4] ep10 loss 0.0068 acc 0.9992 (376s)
+[B f4] DONE test acc 0.9889 runtime 379s
+[A f5] ep1 loss 0.2591 acc 0.8976 (39s)
+[A f5] ep2 loss 0.0801 acc 0.9719 (76s)
+[A f5] ep3 loss 0.0558 acc 0.9835 (114s)
+[A f5] ep4 loss 0.0228 acc 0.9938 (153s)
+[A f5] ep5 loss 0.0216 acc 0.9922 (194s)
+[A f5] ep6 loss 0.0082 acc 0.9988 (232s)
+[A f5] ep7 loss 0.0053 acc 0.9988 (269s)
+[A f5] ep8 loss 0.0030 acc 1.0000 (306s)
+[A f5] ep9 loss 0.0037 acc 0.9996 (343s)
+[A f5] ep10 loss 0.0038 acc 0.9992 (380s)
+[A f5] DONE test acc 0.9238 runtime 383s
+[B f5] ep1 loss 0.2840 acc 0.8922 (38s)
+[B f5] ep2 loss 0.0972 acc 0.9637 (76s)
+[B f5] ep3 loss 0.0484 acc 0.9827 (114s)
+[B f5] ep4 loss 0.0363 acc 0.9864 (153s)
+[B f5] ep5 loss 0.0292 acc 0.9897 (192s)
+[B f5] ep6 loss 0.0086 acc 0.9979 (229s)
+[B f5] ep7 loss 0.0049 acc 0.9992 (270s)
+[B f5] ep8 loss 0.0065 acc 0.9988 (309s)
+[B f5] ep9 loss 0.0079 acc 0.9975 (346s)
+[B f5] ep10 loss 0.0032 acc 0.9996 (383s)
+[B f5] DONE test acc 0.9829 runtime 386s
+ALL RUNS DONE [('A', 1), ('B', 1), ('A', 2), ('B', 2), ('A', 3), ('B', 3), ('A', 4), ('B', 4), ('A', 5), ('B', 5)]
