@@ -131,4 +131,7 @@ Observations:
 6. Near-duplicate threshold: **not frozen**; revisit only if the project wants a near-duplicate arm.
 
 ## Recommended next step
-Design (without yet implementing) a matched comparison of original patient-disjoint five-fold evaluation against image-level stratified five-fold evaluation, to isolate the effect of patient overlap. The proposal is in the hand-off message and is not implemented.
+Tested in `reports/SANITY_EXPERIMENT.md`: original patient-disjoint evaluation against a matched image-level stratified
+evaluation (ResNet50, one split seed) to isolate the effect of patient overlap. Result: image-level evaluation gave clearly
+higher apparent accuracy and better apparent calibration, decision `GO_TO_MULTI_MODEL`. The near-duplicate threshold remains
+**not frozen**; it is not required for that experiment.

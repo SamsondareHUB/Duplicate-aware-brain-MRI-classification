@@ -4,3 +4,8 @@ pandas
 h5py
 scikit-image
 pytest
+torch
+torchvision
+scikit-learn
+statsmodels
+matplotlib
