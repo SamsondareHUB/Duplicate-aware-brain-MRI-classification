@@ -218,3 +218,12 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Project data (never commit raw data)
+data/raw/
+data/interim/
+*.mat
+*.zip
+
+# Full permissive near-duplicate candidate table: regenerable local intermediate (6.7 MB)
+reports/manifests/near_duplicate_candidates.csv

@@ -1,0 +1,124 @@
+{
+  "FILES_FOUND": 3064,
+  "cvind_length": 3064,
+  "FILES_READABLE": 3064,
+  "FILES_UNREADABLE": 0,
+  "unreadable_files": [],
+  "file_numbers_contiguous_1_to_N": true,
+  "fold_mapping": {
+    "status": "SUPPORTED",
+    "observed_violations": 0,
+    "null_min": 217,
+    "null_mean": 223.417,
+    "n_perm": 1000,
+    "n_patients": 233
+  },
+  "UNIQUE_PATIENTS": 233,
+  "CLASS_COUNTS": {
+    "glioma": 1426,
+    "meningioma": 708,
+    "pituitary": 930
+  },
+  "IMAGE_SHAPES": {
+    "512x512": 3049,
+    "256x256": 15
+  },
+  "dtypes": {
+    "int16": 3064
+  },
+  "slices_per_patient": {
+    "min": 1,
+    "median": 13.0,
+    "max": 38,
+    "mean": 13.15
+  },
+  "patients_per_class": {
+    "glioma": 89,
+    "meningioma": 82,
+    "pituitary": 62
+  },
+  "patients_with_multiple_labels": {},
+  "fold_sizes_ORIGINAL_FOLD_COUNTS": {
+    "1": 542,
+    "2": 679,
+    "3": 572,
+    "4": 628,
+    "5": 643
+  },
+  "class_by_fold": {
+    "1": {
+      "glioma": 245,
+      "meningioma": 112,
+      "pituitary": 185
+    },
+    "2": {
+      "glioma": 338,
+      "meningioma": 167,
+      "pituitary": 174
+    },
+    "3": {
+      "glioma": 231,
+      "meningioma": 139,
+      "pituitary": 202
+    },
+    "4": {
+      "glioma": 325,
+      "meningioma": 124,
+      "pituitary": 179
+    },
+    "5": {
+      "glioma": 287,
+      "meningioma": 166,
+      "pituitary": 190
+    }
+  },
+  "patients_by_fold": {
+    "1": 45,
+    "2": 46,
+    "3": 48,
+    "4": 47,
+    "5": 47
+  },
+  "PATIENT_CROSS_FOLD_VIOLATIONS": 0,
+  "patient_cross_fold_violation_ids": {},
+  "exact_groups_by_hash": {
+    "raw_array_hash": 0,
+    "canonical_image_hash": 0,
+    "display_hash": 0
+  },
+  "exact_groups_extra_images_by_hash": {
+    "raw_array_hash": 0,
+    "canonical_image_hash": 0,
+    "display_hash": 0
+  },
+  "raw_vs_canonical_groups_identical": true,
+  "display_only_groups_not_raw": 0,
+  "EXACT_DUPLICATE_GROUPS": 0,
+  "EXACT_DUPLICATE_CROSS_FOLD_GROUPS": 0,
+  "CROSS_PATIENT_EXACT_DUPLICATE_GROUPS": 0,
+  "CROSS_CLASS_EXACT_DUPLICATE_GROUPS": 0,
+  "exact_pair_categories": {},
+  "near_stageA": {
+    "retrieval_thumb_ncc_ge": 0.9,
+    "retrieval_phash_hamming_le": 10,
+    "all_pairs": 4692516,
+    "candidate_pairs": 33432,
+    "by_thumb_ncc_only": 24521,
+    "by_phash_only": 12765
+  },
+  "geometric_diagnostic": {
+    "thumb_ncc_ge": 0.95,
+    "pairs_found_only_after_dihedral_transform": 415,
+    "pairs_identity_thumb_ncc_ge_same_thr": 2774,
+    "max_ncc_full_after_transform": 0.9415756142430604,
+    "max_ssim_full_after_transform": 0.8419796496169569
+  },
+  "NEAR_DUPLICATE_CANDIDATE_PAIRS": 33432,
+  "NEAR_DUPLICATE_CROSS_FOLD_CANDIDATE_PAIRS": 23398,
+  "near_candidate_pairs_non_exact": 33432,
+  "near_candidate_cross_class_pairs": 8659,
+  "compact_outputs": {
+    "top_similarity_pairs_rows": 200,
+    "cross_patient_ncc_ge_0.90_pairs": 19
+  }
+}
