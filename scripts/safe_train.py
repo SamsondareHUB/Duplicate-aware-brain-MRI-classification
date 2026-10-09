@@ -39,10 +39,10 @@ def host_snapshot():
 
 
 def unsafe(s, baseline_swap):
-    if s["available_gib"] < 3.0: return "available RAM below 3 GiB"
+    if s["available_gib"] < 5.0: return "available RAM below 5 GiB"
     if s["swap_gib"] - baseline_swap > 0.5: return "swap grew more than 0.5 GiB"
     if s["disk_gib"] < 10: return "disk free below 10 GiB"
-    if s["pressure_free_pct"] is not None and s["pressure_free_pct"] < 10: return "memory pressure free below 10%"
+    if s["pressure_free_pct"] is not None and s["pressure_free_pct"] < 25: return "memory pressure free below 25%"
     if s["thermal_warning"]: return "macOS reports a thermal warning"
     return None
 
