@@ -1,0 +1,36 @@
+{
+  "python": "3.13.6",
+  "torch": "2.11.0",
+  "torchvision": "0.26.0",
+  "numpy": "2.3.2",
+  "pandas": "2.3.3",
+  "os": "macOS-15.6.1-arm64-arm-64bit-Mach-O",
+  "device": "mps",
+  "mps_available": true,
+  "input_commit": "919d6f0fb3ca462983d6df6ec06846e41abd9645",
+  "split_sha256": {
+    "patient_disjoint_original.csv": "61bec5aaf9a5f4fce4adf89b186ffd6479eb0f6095ee20b8f60ef44274a3e49e",
+    "imagelevel_seed11.csv": "e8b0442c107396fe66a989b8d448aa0e524c1c554823a711db3cc84beeee74f2"
+  },
+  "config": {
+    "model": "torchvision.resnet50",
+    "weights": "IMAGENET1K_V1",
+    "input": 224,
+    "batch_size": 32,
+    "epochs": 10,
+    "optimizer": "AdamW",
+    "lr": 0.0001,
+    "weight_decay": 0.0001,
+    "schedule": "cosine (per-iteration, T_max=total steps, eta_min=0)",
+    "loss": "cross_entropy (no class weights)",
+    "augmentation": "hflip p=0.5; rotation uniform(-10,10) deg bilinear fill 0",
+    "train_seed": 0,
+    "early_stopping": false,
+    "model_selection": "none (final epoch)",
+    "eval_batch_size": 64,
+    "normalisation": "ImageNet mean/std on 3-channel replicate"
+  },
+  "model": "densenet121",
+  "weights": "DenseNet121_Weights.IMAGENET1K_V1",
+  "determinism": "MPS is not bitwise deterministic; train seed 0 is reset for each fold"
+}
