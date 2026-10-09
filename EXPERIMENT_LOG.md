@@ -99,3 +99,12 @@ patient-disjoint folds, with fold sizes and fold x class counts matched.
 ### Decision
 - Keep / expand: GO_TO_MULTI_MODEL (pre-specified rule)
 - Reason: paired CIs exclude 0 for all primary and calibration metrics; next, more architectures, split seeds and training seeds, then ranking stability
+
+## Multi-model continuation status, 2026-10-09 (incomplete)
+
+- Frozen input commit: `919d6f0fb3ca462983d6df6ec06846e41abd9645`; all training uses the original MPS recipe with batch size 32 and 10 epochs.
+- Verified new runs: MobileNetV2 10/10, EfficientNet-B0 10/10, DenseNet121 8/10. Each complete model has 3,064 out-of-fold predictions in each of the original A and B arms. DenseNet121 has 2,421 in each arm; A and B fold 5 remain untrained.
+- DenseNet121 folds ran in separate, sequential MPS processes with process-scoped `caffeinate`, live RAM/swap/thermal checks, and at least five minutes of cooling. Each of the eight completed DenseNet121 folds was validated, committed, pushed, and checked against the remote branch before the next fold.
+- The first completed DenseNet121 fold took 395 seconds. An initial attempt at A fold 5 was safely interrupted during epoch 5 when swap grew more than 0.5 GiB above the original 4.365 GiB baseline. The remaining eight completed DenseNet121 fold outputs were preserved. The guarded retry did not start: swap did not return within the original safety cutoff after two hours of recovery. No thermal warning was recorded.
+- The 30-run four-model analysis, scientific report, final PR, and task-specific local cleanup are pending until the two remaining folds can run safely. No partial four-model ranking is reported as final.
+- Validation at this checkpoint: all 28 new run pairs passed integrity checks; `python3 -m pytest -q tests` passed 24 tests. The temporary dataset and workspace are retained to resume without retraining completed folds.
