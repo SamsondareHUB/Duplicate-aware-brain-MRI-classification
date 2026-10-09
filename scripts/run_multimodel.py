@@ -117,11 +117,10 @@ def run_model(name, max_new_runs=None):
             if completed_this_process:
                 # Cooling period and hard host check before every next fold.
                 deadline = time.monotonic() + 20 * 60
-                baseline_swap = float(os.environ.get("MRI_BASELINE_SWAP_GIB", "0"))
                 while True:
                     time.sleep(30)
                     snapshot = host_snapshot()
-                    reason = unsafe(snapshot, baseline_swap)
+                    reason = unsafe(snapshot)
                     if snapshot["available_gib"] < 5:
                         reason = reason or "available RAM below 5 GiB pre-run"
                     if snapshot["pressure_free_pct"] is not None and snapshot["pressure_free_pct"] < 20:

@@ -36,10 +36,7 @@ def main():
     a = ap.parse_args()
     if a.cooldown_seconds < 0:
         raise SystemExit("Cooldown must be nonnegative")
-    initial = host_snapshot()
-    baseline = min(float(os.environ.get("MRI_GLOBAL_SWAP_BASELINE_GIB", initial["swap_gib"])),
-                   initial["swap_gib"])
-    print("GLOBAL_SWAP_BASELINE_GIB", baseline, flush=True)
+    print("INITIAL_RESOURCE_CHECK", host_snapshot(), flush=True)
     first_run = True
     while True:
         count = complete_count(a.model)
@@ -53,7 +50,7 @@ def main():
         while True:
             time.sleep(min(30, max(1, earliest - time.monotonic())))
             s = host_snapshot()
-            reason = unsafe(s, baseline)
+            reason = unsafe(s)
             min_ram = 12 if a.model == "densenet121" else 8
             if s["available_gib"] < min_ram:
                 reason = reason or f"available RAM below {min_ram} GiB before next fold"
@@ -65,7 +62,6 @@ def main():
             if time.monotonic() >= deadline:
                 raise RuntimeError(f"Resource headroom did not recover in 6 hours: {reason}")
         env = os.environ.copy()
-        env["MRI_GLOBAL_SWAP_BASELINE_GIB"] = str(baseline)
         rc = subprocess.call([sys.executable, str(ROOT / "scripts/safe_train.py"), a.model,
                               "--max-new-runs", "1"], cwd=ROOT, env=env)
         if rc:
