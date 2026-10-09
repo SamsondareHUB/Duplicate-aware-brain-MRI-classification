@@ -161,9 +161,15 @@ def run_model(name, max_new_runs=None):
                     tl += loss.item() * len(bi)
                     tc += (logits.argmax(1) == yb).sum().item()
                 log.append({"epoch": ep + 1, "train_loss": tl / n, "train_acc": tc / n,
-                            "lr_end": sched.get_last_lr()[0]})
+                            "lr_end": sched.get_last_lr()[0],
+                            "mps_active_gib": torch.mps.current_allocated_memory() / 2**30,
+                            "mps_driver_gib": torch.mps.driver_allocated_memory() / 2**30})
                 print(f"[{name} {arm} f{fold}] epoch {ep+1}/{CFG['epochs']} "
-                      f"loss={tl/n:.4f} acc={tc/n:.4f} elapsed={time.time()-t0:.0f}s", flush=True)
+                      f"loss={tl/n:.4f} acc={tc/n:.4f} elapsed={time.time()-t0:.0f}s "
+                      f"mps_driver_gib={log[-1]['mps_driver_gib']:.2f}", flush=True)
+                # Release only idle MPS allocator blocks; model/optimizer state and
+                # the frozen training recipe are unchanged.
+                torch.mps.empty_cache()
             model.eval()
             outputs = []
             with torch.no_grad():
