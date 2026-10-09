@@ -1,0 +1,9 @@
+# Interrupted multi-model experiment: resource safety stop
+
+This branch contains **3 verified completed new runs**, all MobileNetV2: A fold 1, B fold 1, and A fold 2. Here A means patient-disjoint and B means matched image-level seed 11, following the frozen PR #1 split filenames. The newer multi-model specification reverses these letters; do not reassign existing results.
+
+The next run, MobileNetV2 B fold 2, was interrupted during epoch 9 of 10 by `scripts/safe_train.py` when host swap usage rose more than 0.5 GiB above that session's baseline (4.925 to 5.636 GiB). It produced **no valid prediction file or run JSON**. The monitor did not start another fold. macOS reported no thermal warning; available RAM was 5.98 GiB and memory-pressure free was 33% at the cutoff. After the process exited, available RAM recovered to 9.59 GiB and memory-pressure free to 49%, but swap remained at 5.636 GiB. The process-scoped `caffeinate` process also exited.
+
+The official Figshare download script reported all six published MD5 checksums matched. The dataset manifest has 3,064 images, 233 patients, and class counts 708/1,426/930. Both frozen split files matched `data/splits/split_validation.json`. The first complete fold took 176 seconds on the Mac's MPS backend. The three completed folds took 176, 176, and 172 seconds respectively.
+
+No MobileNetV2 model-level result or model ranking is available yet. The remaining work is 7 MobileNetV2 folds, 10 EfficientNet-B0 folds, 10 DenseNet121 folds, then joint analysis, independent verification, scientific report, and PR. Do not run the current trainer again until the host resource condition has been assessed and safe operating headroom established. `scripts/run_multimodel.py` validates existing completed fold files and skips them when it resumes.

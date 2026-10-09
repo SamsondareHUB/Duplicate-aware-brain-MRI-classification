@@ -224,6 +224,7 @@ data/raw/
 data/interim/
 data/torch/
 data/matplotlib/
+results/multimodel/train.lock
 *.mat
 *.zip
 
