@@ -46,7 +46,7 @@ def main():
             print("MODEL_COMPLETE", a.model, flush=True)
             return 0
         # Allow cooling and unrelated interactive work between every fold.
-        deadline = time.monotonic() + 45 * 60
+        deadline = time.monotonic() + 2 * 60 * 60
         earliest = time.monotonic() + (30 if first_run else a.cooldown_seconds)
         while True:
             time.sleep(min(30, max(1, earliest - time.monotonic())))
@@ -61,7 +61,7 @@ def main():
             if reason is None and time.monotonic() >= earliest:
                 break
             if time.monotonic() >= deadline:
-                raise RuntimeError(f"Resource headroom did not recover in 45 minutes: {reason}")
+                raise RuntimeError(f"Resource headroom did not recover in 2 hours: {reason}")
         env = os.environ.copy()
         env["MRI_GLOBAL_SWAP_BASELINE_GIB"] = str(baseline)
         rc = subprocess.call([sys.executable, str(ROOT / "scripts/safe_train.py"), a.model,
