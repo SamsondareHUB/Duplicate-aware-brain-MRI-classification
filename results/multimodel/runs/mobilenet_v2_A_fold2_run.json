@@ -1,0 +1,77 @@
+{
+  "model": "mobilenet_v2",
+  "weights": "MobileNet_V2_Weights.IMAGENET1K_V1",
+  "arm": "A",
+  "protocol": "patient_disjoint",
+  "fold": 2,
+  "n_train": 2385,
+  "n_test": 679,
+  "runtime_s": 171.54542207717896,
+  "device": "mps",
+  "train_seed": 0,
+  "split_sha256": "61bec5aaf9a5f4fce4adf89b186ffd6479eb0f6095ee20b8f60ef44274a3e49e",
+  "experiment_input_commit": "919d6f0fb3ca462983d6df6ec06846e41abd9645",
+  "epochs": [
+    {
+      "epoch": 1,
+      "train_loss": 0.33115932267916776,
+      "train_acc": 0.8633123689727463,
+      "lr_end": 9.755282581475762e-05
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.12516298722046226,
+      "train_acc": 0.9555555555555556,
+      "lr_end": 9.045084971874727e-05
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.05604983481346186,
+      "train_acc": 0.979874213836478,
+      "lr_end": 7.938926261462356e-05
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.06174501522563289,
+      "train_acc": 0.979454926624738,
+      "lr_end": 6.545084971874731e-05
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.02520059510690611,
+      "train_acc": 0.9941299790356394,
+      "lr_end": 4.9999999999999975e-05
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.020394654526517765,
+      "train_acc": 0.9941299790356394,
+      "lr_end": 3.454915028125259e-05
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.014716360750910778,
+      "train_acc": 0.9970649895178197,
+      "lr_end": 2.061073738537634e-05
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.012482251871603714,
+      "train_acc": 0.9970649895178197,
+      "lr_end": 9.549150281252636e-06
+    },
+    {
+      "epoch": 9,
+      "train_loss": 0.008043231799235993,
+      "train_acc": 0.99958071278826,
+      "lr_end": 2.4471741852423195e-06
+    },
+    {
+      "epoch": 10,
+      "train_loss": 0.011694894876307661,
+      "train_acc": 0.9974842767295597,
+      "lr_end": 0.0
+    }
+  ],
+  "test_acc_final": 0.914580265095729
+}

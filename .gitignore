@@ -222,6 +222,8 @@ __marimo__/
 # Project data (never commit raw data)
 data/raw/
 data/interim/
+data/torch/
+data/matplotlib/
 *.mat
 *.zip
 
