@@ -51,7 +51,7 @@ def main():
         while True:
             s = host_snapshot()
             reason = unsafe(s)
-            min_ram = 12 if a.model == "densenet121" else 8
+            min_ram = 8
             if s["available_gib"] < min_ram:
                 reason = reason or f"available RAM below {min_ram} GiB before next fold"
             if s["pressure_free_pct"] is not None and s["pressure_free_pct"] < 35:

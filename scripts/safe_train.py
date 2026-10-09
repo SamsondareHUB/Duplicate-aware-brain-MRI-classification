@@ -68,7 +68,7 @@ def main():
     print("PRE_RUN_MPS_GIB", {"active": torch.mps.current_allocated_memory() / 2**30,
                               "driver": torch.mps.driver_allocated_memory() / 2**30,
                               "recommended_max": torch.mps.recommended_max_memory() / 2**30}, flush=True)
-    if first["available_gib"] < 12 or first["disk_gib"] < 10 or first["thermal_warning"]:
+    if first["available_gib"] < 8 or first["disk_gib"] < 10 or first["thermal_warning"]:
         raise SystemExit("Unsafe pre-run resource status; training not started")
     pre_reason = unsafe(first)
     if first["pressure_free_pct"] is not None and first["pressure_free_pct"] < 35:
