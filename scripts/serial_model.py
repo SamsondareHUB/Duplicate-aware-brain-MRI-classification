@@ -33,9 +33,10 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("model", choices=NAMES)
     ap.add_argument("--cooldown-seconds", type=int, default=60)
+    ap.add_argument("--preflight-timeout-seconds", type=int, default=120)
     a = ap.parse_args()
-    if a.cooldown_seconds < 0:
-        raise SystemExit("Cooldown must be nonnegative")
+    if a.cooldown_seconds < 0 or a.preflight_timeout_seconds < 0:
+        raise SystemExit("Cooldown and preflight timeout must be nonnegative")
     print("INITIAL_RESOURCE_CHECK", host_snapshot(), flush=True)
     first_run = True
     while True:
@@ -45,10 +46,9 @@ def main():
             print("MODEL_COMPLETE", a.model, flush=True)
             return 0
         # Allow cooling and unrelated interactive work between every fold.
-        deadline = time.monotonic() + 6 * 60 * 60
-        earliest = time.monotonic() + (30 if first_run else a.cooldown_seconds)
+        deadline = time.monotonic() + a.preflight_timeout_seconds
+        earliest = time.monotonic() + (0 if first_run else a.cooldown_seconds)
         while True:
-            time.sleep(min(30, max(1, earliest - time.monotonic())))
             s = host_snapshot()
             reason = unsafe(s)
             min_ram = 12 if a.model == "densenet121" else 8
@@ -60,7 +60,8 @@ def main():
             if reason is None and time.monotonic() >= earliest:
                 break
             if time.monotonic() >= deadline:
-                raise RuntimeError(f"Resource headroom did not recover in 6 hours: {reason}")
+                raise RuntimeError(f"Resource headroom did not recover in {a.preflight_timeout_seconds} seconds: {reason}")
+            time.sleep(min(30, max(1, deadline - time.monotonic())))
         env = os.environ.copy()
         rc = subprocess.call([sys.executable, str(ROOT / "scripts/safe_train.py"), a.model,
                               "--max-new-runs", "1"], cwd=ROOT, env=env)
