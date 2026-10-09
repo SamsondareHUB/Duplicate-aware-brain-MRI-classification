@@ -36,7 +36,9 @@ def main():
     a = ap.parse_args()
     if a.cooldown_seconds < 0:
         raise SystemExit("Cooldown must be nonnegative")
-    baseline = host_snapshot()["swap_gib"]
+    initial = host_snapshot()
+    baseline = min(float(os.environ.get("MRI_GLOBAL_SWAP_BASELINE_GIB", initial["swap_gib"])),
+                   initial["swap_gib"])
     print("GLOBAL_SWAP_BASELINE_GIB", baseline, flush=True)
     first_run = True
     while True:
