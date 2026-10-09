@@ -5,6 +5,7 @@ run JSON both pass integrity checks. PR #1's A/B file labels are retained:
 A=patient-disjoint, B=image-level seed 11.
 """
 import argparse
+import gc
 import json
 import os
 import platform
@@ -90,7 +91,9 @@ def run_model(name, max_new_runs=None):
     ids, X = load_all(ROOT / "reports/manifests/image_manifest.csv")
     assert len(ids) == 3064 and X.shape == (3064, 224, 224)
     pos = {int(i): k for k, i in enumerate(ids)}
-    Xt = torch.from_numpy(np.asarray(X))
+    # Keep the existing read-only preprocessing cache memory-mapped. Indexing
+    # materializes only the current batch; no full-dataset RAM copy is needed.
+    Xt = torch.from_numpy(X)
     input_commit = os.environ.get("EXPERIMENT_INPUT_COMMIT", subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip())
     env = {"python": platform.python_version(), "torch": torch.__version__, "torchvision": torchvision.__version__,
            "numpy": np.__version__, "pandas": pd.__version__, "os": platform.platform(),
@@ -160,6 +163,11 @@ def run_model(name, max_new_runs=None):
                     sched.step()
                     tl += loss.item() * len(bi)
                     tc += (logits.argmax(1) == yb).sum().item()
+                    if b == 0:
+                        print(f"[{name} {arm} f{fold}] first_batch_mps_active_gib="
+                              f"{torch.mps.current_allocated_memory()/2**30:.2f} "
+                              f"driver_gib={torch.mps.driver_allocated_memory()/2**30:.2f}", flush=True)
+                    del bi, xb, yb, logits, loss
                 log.append({"epoch": ep + 1, "train_loss": tl / n, "train_acc": tc / n,
                             "lr_end": sched.get_last_lr()[0],
                             "mps_active_gib": torch.mps.current_allocated_memory() / 2**30,
@@ -209,7 +217,8 @@ def run_model(name, max_new_runs=None):
             print(f"[{name} {arm} f{fold}] COMPLETE runtime={runtime_s:.0f}s test_acc={run['test_acc_final']:.4f}", flush=True)
             new_runs += 1
             completed_this_process += 1
-            del model, opt, sched, outputs, lg, pr, d
+            del model, opt, sched, outputs, lg, pr, d, tr_idx, te_idx, ytr, perm
+            gc.collect()
             torch.mps.empty_cache()
             if max_new_runs is not None and new_runs >= max_new_runs:
                 return
