@@ -1,0 +1,77 @@
+{
+  "model": "efficientnet_b0",
+  "weights": "EfficientNet_B0_Weights.IMAGENET1K_V1",
+  "arm": "A",
+  "protocol": "patient_disjoint",
+  "fold": 2,
+  "n_train": 2385,
+  "n_test": 679,
+  "runtime_s": 234.75213527679443,
+  "device": "mps",
+  "train_seed": 0,
+  "split_sha256": "61bec5aaf9a5f4fce4adf89b186ffd6479eb0f6095ee20b8f60ef44274a3e49e",
+  "experiment_input_commit": "919d6f0fb3ca462983d6df6ec06846e41abd9645",
+  "epochs": [
+    {
+      "epoch": 1,
+      "train_loss": 0.4913237827878828,
+      "train_acc": 0.8364779874213837,
+      "lr_end": 9.755282581475762e-05
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.19314975593262498,
+      "train_acc": 0.9303983228511531,
+      "lr_end": 9.045084971874727e-05
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.10105503551365194,
+      "train_acc": 0.9664570230607966,
+      "lr_end": 7.938926261462356e-05
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.08596934000541703,
+      "train_acc": 0.9689727463312369,
+      "lr_end": 6.545084971874731e-05
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.05621509217116318,
+      "train_acc": 0.9840670859538784,
+      "lr_end": 4.9999999999999975e-05
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.03709288409499127,
+      "train_acc": 0.989517819706499,
+      "lr_end": 3.454915028125259e-05
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.031369907820921396,
+      "train_acc": 0.990356394129979,
+      "lr_end": 2.061073738537634e-05
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.03457965536601451,
+      "train_acc": 0.9924528301886792,
+      "lr_end": 9.549150281252636e-06
+    },
+    {
+      "epoch": 9,
+      "train_loss": 0.025980557036631012,
+      "train_acc": 0.9928721174004193,
+      "lr_end": 2.4471741852423195e-06
+    },
+    {
+      "epoch": 10,
+      "train_loss": 0.02990670432522112,
+      "train_acc": 0.989937106918239,
+      "lr_end": 0.0
+    }
+  ],
+  "test_acc_final": 0.9278350515463918
+}

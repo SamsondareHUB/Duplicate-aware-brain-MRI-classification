@@ -1,0 +1,17 @@
+metric,arm,protocol,model,bootstrap_top_ranked_frequency,tie_policy
+balanced_accuracy,A,patient_disjoint,resnet50,0.0598,split credit equally among exact tied maxima
+balanced_accuracy,A,patient_disjoint,mobilenet_v2,0.0,split credit equally among exact tied maxima
+balanced_accuracy,A,patient_disjoint,efficientnet_b0,0.0,split credit equally among exact tied maxima
+balanced_accuracy,A,patient_disjoint,densenet121,0.9402,split credit equally among exact tied maxima
+balanced_accuracy,B,image_level_seed11,resnet50,0.9225,split credit equally among exact tied maxima
+balanced_accuracy,B,image_level_seed11,mobilenet_v2,0.0,split credit equally among exact tied maxima
+balanced_accuracy,B,image_level_seed11,efficientnet_b0,0.0,split credit equally among exact tied maxima
+balanced_accuracy,B,image_level_seed11,densenet121,0.0775,split credit equally among exact tied maxima
+macro_f1,A,patient_disjoint,resnet50,0.0474,split credit equally among exact tied maxima
+macro_f1,A,patient_disjoint,mobilenet_v2,0.0,split credit equally among exact tied maxima
+macro_f1,A,patient_disjoint,efficientnet_b0,0.0,split credit equally among exact tied maxima
+macro_f1,A,patient_disjoint,densenet121,0.9526,split credit equally among exact tied maxima
+macro_f1,B,image_level_seed11,resnet50,0.8844,split credit equally among exact tied maxima
+macro_f1,B,image_level_seed11,mobilenet_v2,0.0,split credit equally among exact tied maxima
+macro_f1,B,image_level_seed11,efficientnet_b0,0.0,split credit equally among exact tied maxima
+macro_f1,B,image_level_seed11,densenet121,0.1156,split credit equally among exact tied maxima

@@ -1,0 +1,15 @@
+{
+  "models": [
+    "resnet50",
+    "mobilenet_v2",
+    "efficientnet_b0",
+    "densenet121"
+  ],
+  "n_images_per_model_protocol": 3064,
+  "n_patients": 233,
+  "bootstrap_replicates": 5000,
+  "bootstrap_seed": 2026,
+  "protocol_A": "patient_disjoint",
+  "protocol_B": "image_level_seed11",
+  "new_runs": 30
+}
