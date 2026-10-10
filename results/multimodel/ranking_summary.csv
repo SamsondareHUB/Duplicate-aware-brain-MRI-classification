@@ -1,0 +1,17 @@
+metric,arm,protocol,rank,model,estimate,kendall_tau_between_protocols
+balanced_accuracy,A,patient_disjoint,1,densenet121,0.9455648793062919,0.3333333333333334
+balanced_accuracy,A,patient_disjoint,2,resnet50,0.9386349289361151,0.3333333333333334
+balanced_accuracy,A,patient_disjoint,3,efficientnet_b0,0.9251660710559609,0.3333333333333334
+balanced_accuracy,A,patient_disjoint,4,mobilenet_v2,0.9246050612382892,0.3333333333333334
+balanced_accuracy,B,image_level_seed11,1,resnet50,0.9816336637586073,0.3333333333333334
+balanced_accuracy,B,image_level_seed11,2,densenet121,0.9773718116338221,0.3333333333333334
+balanced_accuracy,B,image_level_seed11,3,mobilenet_v2,0.9707936809798126,0.3333333333333334
+balanced_accuracy,B,image_level_seed11,4,efficientnet_b0,0.9671551730968851,0.3333333333333334
+macro_f1,A,patient_disjoint,1,densenet121,0.9466502855441056,0.3333333333333334
+macro_f1,A,patient_disjoint,2,resnet50,0.9393780944885529,0.3333333333333334
+macro_f1,A,patient_disjoint,3,efficientnet_b0,0.928020989575293,0.3333333333333334
+macro_f1,A,patient_disjoint,4,mobilenet_v2,0.9265941140200814,0.3333333333333334
+macro_f1,B,image_level_seed11,1,resnet50,0.9829701754597306,0.3333333333333334
+macro_f1,B,image_level_seed11,2,densenet121,0.9798282720537602,0.3333333333333334
+macro_f1,B,image_level_seed11,3,mobilenet_v2,0.973326977508572,0.3333333333333334
+macro_f1,B,image_level_seed11,4,efficientnet_b0,0.9697293737824703,0.3333333333333334

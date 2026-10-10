@@ -43,7 +43,9 @@ def main():
              "The unchanged recipe uses per-image min-max normalization, antialiased bilinear resize to 224×224, "
              "three-channel replication, ImageNet normalization and pretrained weights, batch size 32, 10 epochs, "
              "AdamW (learning rate 1e-4, weight decay 1e-4), per-iteration cosine schedule, unweighted cross-entropy, "
-             "horizontal flip probability 0.5, rotation ±10°, training seed 0, no early stopping, and final-epoch evaluation.", "",
+             "horizontal flip probability 0.5, rotation ±10°, training seed 0, no early stopping, and final-epoch evaluation. "
+             "All runs used physical batch size 32; no microbatching, gradient accumulation, mixed precision, "
+             "or activation checkpointing was used.", "",
              "The original split SHA-256 values are `61bec5aaf9a5f4fce4adf89b186ffd6479eb0f6095ee20b8f60ef44274a3e49e` "
              "(A) and `e8b0442c107396fe66a989b8d448aa0e524c1c554823a711db3cc84beeee74f2` (B). "
              "No architecture-specific hyperparameters were tuned.", "",
@@ -108,14 +110,19 @@ def main():
               "![Reliability diagrams](../results/multimodel/figures/reliability_diagrams.png)", "",
               "![Model comparison](../results/multimodel/figures/model_comparison.png)", "",
               "## Environment and reproducibility", "",
-              f"New runs: {len(manifests)}; failed completed runs: 0; summed fold training/evaluation runtime: "
+              f"New runs: {len(manifests)}; all accepted runs completed 10 epochs; summed fold training/evaluation runtime: "
               f"{sum(r['runtime_s'] for r in manifests)/60:.1f} minutes. All new runs used the Mac's MPS backend. "
+              "Safety-stopped attempts produced no accepted predictions and are excluded from the analysis. "
+              "For the final two DenseNet121 folds, the guarded preflight required at least 8 GiB available RAM, "
+              "at least 35% free macOS memory pressure, MPS availability, and no thermal warning; swap was diagnostic. "
+              "During training, the monitor stopped on less than 5 GiB available RAM, less than 25% free memory pressure, "
+              "thermal warning, or an unresponsive system check. These resource gates did not change the training recipe. "
               "The recorded software versions, input commit, seeds, and frozen configuration are in "
               "`results/multimodel/environment_*.json`; fold runtimes and epoch logs are in `results/multimodel/runs/`. "
               "ImageNet weight downloads and raw MRIs are excluded from Git.", "",
               "From a fresh checkout of this branch on a local Mac with MPS and the packages in `requirements-audit.txt`:", "",
-              "```sh", "python3 scripts/download_figshare.py --extract", "python3 scripts/safe_train.py mobilenet_v2",
-              "python3 scripts/safe_train.py efficientnet_b0", "python3 scripts/safe_train.py densenet121",
+              "```sh", "python3 scripts/download_figshare.py --extract", "python3 scripts/serial_model.py mobilenet_v2",
+              "python3 scripts/serial_model.py efficientnet_b0", "python3 scripts/serial_model.py densenet121",
               "python3 scripts/analyze_multimodel.py", "python3 scripts/verify_multimodel.py",
               "python3 scripts/build_multimodel_report.py", "```", "",
               "The trainer resumes verified complete folds and refuses incomplete or invalid fold files for inspection. "
