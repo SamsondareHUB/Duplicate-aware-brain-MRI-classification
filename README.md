@@ -28,6 +28,7 @@ python -m pip install numpy pandas scipy scikit-learn pytest      # torch / h5py
 python scripts/reproduce_from_predictions.py                      # 200 checks; exit code 1 on any FAIL
 python scripts/ranking_reliability_extras.py                      # exploratory ranking diagnostics
 python scripts/pid_suffix_sensitivity.py                          # patient-ID-suffix provenance sensitivity
+python scripts/validate_patient_ids.py                            # patient-ID suffix validation (reports/PATIENT_ID_VALIDATION.md)
 python -m pytest -q tests
 ```
 `reproduce_from_predictions.py` recomputes, from the committed out-of-fold (OOF) predictions and frozen splits only: split hashes and

@@ -1,0 +1,393 @@
+{
+ "n_image_records": 3064,
+ "formats_raw_pids": {
+  "unique_raw_pids": 233,
+  "by_format": {
+   "numeric": 166,
+   "MR_with_letter_suffix": 43,
+   "MR_no_suffix": 24
+  },
+  "examples": {
+   "numeric": [
+    "100360",
+    "100416",
+    "100572",
+    "100639"
+   ],
+   "MR_with_letter_suffix": [
+    "MR017260F",
+    "MR024780B",
+    "MR024780D",
+    "MR024780E"
+   ],
+   "MR_no_suffix": [
+    "MR033420",
+    "MR034694",
+    "MR034997",
+    "MR038469"
+   ]
+  },
+  "images_by_format": {
+   "numeric": 1843,
+   "MR_with_letter_suffix": 761,
+   "MR_no_suffix": 460
+  },
+  "classes_by_format": {
+   "numeric": {
+    "pituitary": 930,
+    "meningioma": 708,
+    "glioma": 205
+   },
+   "MR_with_letter_suffix": {
+    "glioma": 761
+   },
+   "MR_no_suffix": {
+    "glioma": 460
+   }
+  }
+ },
+ "normalization": {
+  "rule": "strip one trailing [A-Z] from ^MR\\d{6}[A-Z]$ only",
+  "unique_raw_pids": 233,
+  "unique_normalized_stems": 209,
+  "suffix_sharing_groups": 18,
+  "affected_raw_pids": 42,
+  "affected_images": 811,
+  "stems_spanning_folds": 16,
+  "images_in_cross_fold_stems": 734,
+  "stems_not_spanning_folds_among_sharing": 2,
+  "raw_pids_per_sharing_group_distribution": {
+   "2": 14,
+   "3": 2,
+   "4": 2
+  },
+  "all_sharing_groups_single_class": true,
+  "sharing_group_class_images": {
+   "glioma": 811
+  },
+  "mr_suffix_pids_whose_bare_stem_pid_also_exists": 15
+ },
+ "identity_interpretations": {
+  "raw_pid": {
+   "identity_groups": 233,
+   "groups_crossing_folds": 0,
+   "images_in_crossing_groups": 0,
+   "test_images_potentially_exposed": 0,
+   "pct_of_3064": 0.0,
+   "exposed_by_class": {},
+   "exposed_by_fold": {}
+  },
+  "stem": {
+   "identity_groups": 209,
+   "groups_crossing_folds": 16,
+   "images_in_crossing_groups": 734,
+   "test_images_potentially_exposed": 734,
+   "pct_of_3064": 23.96,
+   "exposed_by_class": {
+    "glioma": 734
+   },
+   "exposed_by_fold": {
+    "1": 136,
+    "2": 171,
+    "3": 83,
+    "4": 228,
+    "5": 116
+   }
+  }
+ },
+ "protocol_B_context": {
+  "raw_pids_spanning_folds": 224
+ },
+ "performance_protocol_A_affected_vs_unaffected": {
+  "resnet50": {
+   "exposed_by_stem(all glioma)": {
+    "n": 734,
+    "accuracy": 0.9850136239782016,
+    "errors": 11
+   },
+   "glioma_not_exposed": {
+    "n": 692,
+    "accuracy": 0.9364161849710982,
+    "errors": 44
+   },
+   "glioma_MR_not_exposed": {
+    "n": 487,
+    "accuracy": 0.9917864476386037,
+    "errors": 4
+   },
+   "glioma_numeric_ID": {
+    "n": 205,
+    "accuracy": 0.8048780487804879,
+    "errors": 40
+   },
+   "all_non_glioma": {
+    "n": 1638,
+    "accuracy": 0.9334554334554335,
+    "errors": 109
+   },
+   "diff_exposed_minus_other_glioma": 0.04859743900710334
+  },
+  "mobilenet_v2": {
+   "exposed_by_stem(all glioma)": {
+    "n": 734,
+    "accuracy": 0.9918256130790191,
+    "errors": 6
+   },
+   "glioma_not_exposed": {
+    "n": 692,
+    "accuracy": 0.9263005780346821,
+    "errors": 51
+   },
+   "glioma_MR_not_exposed": {
+    "n": 487,
+    "accuracy": 0.9958932238193019,
+    "errors": 2
+   },
+   "glioma_numeric_ID": {
+    "n": 205,
+    "accuracy": 0.7609756097560976,
+    "errors": 49
+   },
+   "all_non_glioma": {
+    "n": 1638,
+    "accuracy": 0.9151404151404151,
+    "errors": 139
+   },
+   "diff_exposed_minus_other_glioma": 0.06552503504433693
+  },
+  "efficientnet_b0": {
+   "exposed_by_stem(all glioma)": {
+    "n": 734,
+    "accuracy": 0.9904632152588556,
+    "errors": 7
+   },
+   "glioma_not_exposed": {
+    "n": 692,
+    "accuracy": 0.9378612716763006,
+    "errors": 43
+   },
+   "glioma_MR_not_exposed": {
+    "n": 487,
+    "accuracy": 0.9958932238193019,
+    "errors": 2
+   },
+   "glioma_numeric_ID": {
+    "n": 205,
+    "accuracy": 0.8,
+    "errors": 41
+   },
+   "all_non_glioma": {
+    "n": 1638,
+    "accuracy": 0.9133089133089133,
+    "errors": 142
+   },
+   "diff_exposed_minus_other_glioma": 0.05260194358255499
+  },
+  "densenet121": {
+   "exposed_by_stem(all glioma)": {
+    "n": 734,
+    "accuracy": 0.9904632152588556,
+    "errors": 7
+   },
+   "glioma_not_exposed": {
+    "n": 692,
+    "accuracy": 0.9479768786127167,
+    "errors": 36
+   },
+   "glioma_MR_not_exposed": {
+    "n": 487,
+    "accuracy": 0.997946611909651,
+    "errors": 1
+   },
+   "glioma_numeric_ID": {
+    "n": 205,
+    "accuracy": 0.8292682926829268,
+    "errors": 35
+   },
+   "all_non_glioma": {
+    "n": 1638,
+    "accuracy": 0.938949938949939,
+    "errors": 100
+   },
+   "diff_exposed_minus_other_glioma": 0.04248633664613888
+  }
+ },
+ "similarity_evidence_committed_tables": {
+  "top_similarity_pairs.csv": {
+   "cross_pid_pairs": 8,
+   "same_stem_pairs": 0,
+   "max_ncc_full_same_stem": null,
+   "max_ncc_full_cross_pid": 0.9323508055501322
+  },
+  "cross_patient_high_similarity_pairs.csv": {
+   "cross_pid_pairs": 19,
+   "same_stem_pairs": 0,
+   "max_ncc_full_same_stem": null,
+   "max_ncc_full_cross_pid": 0.9323508055501322
+  }
+ },
+ "subset_excluding_stem_exposed_images": {
+  "n_images": 2330,
+  "class_counts": {
+   "meningioma": 708,
+   "glioma": 692,
+   "pituitary": 930
+  },
+  "metrics": {
+   "resnet50|A": {
+    "balanced_accuracy": 0.9303,
+    "macro_f1": 0.9311
+   },
+   "mobilenet_v2|A": {
+    "balanced_accuracy": 0.9134,
+    "macro_f1": 0.914
+   },
+   "efficientnet_b0|A": {
+    "balanced_accuracy": 0.9161,
+    "macro_f1": 0.9163
+   },
+   "densenet121|A": {
+    "balanced_accuracy": 0.9383,
+    "macro_f1": 0.9388
+   },
+   "resnet50|B": {
+    "balanced_accuracy": 0.9801,
+    "macro_f1": 0.9807
+   },
+   "mobilenet_v2|B": {
+    "balanced_accuracy": 0.9668,
+    "macro_f1": 0.9674
+   },
+   "efficientnet_b0|B": {
+    "balanced_accuracy": 0.9639,
+    "macro_f1": 0.9643
+   },
+   "densenet121|B": {
+    "balanced_accuracy": 0.9759,
+    "macro_f1": 0.9763
+   }
+  },
+  "note": "descriptive only; class mix differs from the full data; same images evaluated under A and B"
+ },
+ "cluster_bootstrap_sensitivity": {
+  "raw_pid_units": {
+   "units": 233,
+   "BA_ci_protocol_A": {
+    "resnet50": [
+     0.9114,
+     0.9608
+    ],
+    "mobilenet_v2": [
+     0.8962,
+     0.9475
+    ],
+    "efficientnet_b0": [
+     0.8969,
+     0.949
+    ],
+    "densenet121": [
+     0.9201,
+     0.9662
+    ]
+   },
+   "protocol_diff_BA_B_minus_A": {
+    "resnet50": [
+     0.0237,
+     0.0673
+    ],
+    "mobilenet_v2": [
+     0.028,
+     0.0685
+    ],
+    "efficientnet_b0": [
+     0.0238,
+     0.0631
+    ],
+    "densenet121": [
+     0.0143,
+     0.0528
+    ]
+   },
+   "resnet50_minus_densenet121_BA": {
+    "A": [
+     -0.016,
+     0.0015
+    ],
+    "B": [
+     -0.0015,
+     0.0104
+    ]
+   },
+   "resnet50_minus_densenet121_F1": {
+    "A": [
+     -0.0161,
+     0.0012
+    ],
+    "B": [
+     -0.0019,
+     0.0086
+    ]
+   }
+  },
+  "stem_units": {
+   "units": 209,
+   "BA_ci_protocol_A": {
+    "resnet50": [
+     0.9119,
+     0.9609
+    ],
+    "mobilenet_v2": [
+     0.8972,
+     0.9479
+    ],
+    "efficientnet_b0": [
+     0.8966,
+     0.949
+    ],
+    "densenet121": [
+     0.9205,
+     0.9657
+    ]
+   },
+   "protocol_diff_BA_B_minus_A": {
+    "resnet50": [
+     0.0233,
+     0.067
+    ],
+    "mobilenet_v2": [
+     0.0279,
+     0.0683
+    ],
+    "efficientnet_b0": [
+     0.024,
+     0.0631
+    ],
+    "densenet121": [
+     0.0145,
+     0.0527
+    ]
+   },
+   "resnet50_minus_densenet121_BA": {
+    "A": [
+     -0.0163,
+     0.0019
+    ],
+    "B": [
+     -0.0015,
+     0.0104
+    ]
+   },
+   "resnet50_minus_densenet121_F1": {
+    "A": [
+     -0.0162,
+     0.0013
+    ],
+    "B": [
+     -0.0019,
+     0.0086
+    ]
+   }
+  },
+  "note": "stem-clustered bootstrap widens/changes uncertainty only; it is NOT a stem-disjoint retraining and gives no corrected estimate"
+ }
+}
