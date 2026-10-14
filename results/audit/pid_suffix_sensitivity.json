@@ -1,0 +1,57 @@
+{
+ "n_distinct_patient_ids": 233,
+ "n_distinct_stems": 209,
+ "stems_with_multiple_ids": 18,
+ "ids_in_those_stems": 42,
+ "images_in_those_stems": 811,
+ "stems_spanning_multiple_folds_under_A": 16,
+ "images_in_stems_spanning_folds": 734,
+ "MR_images": 1221,
+ "MR_images_exposed_to_sibling_in_other_fold": 734,
+ "MR_glioma_accuracy_by_sibling_exposure_protocol_A": {
+  "resnet50": {
+   "acc_exposed": 0.9850136239782016,
+   "n_exposed": 734,
+   "acc_unexposed": 0.9917864476386037,
+   "n_unexposed": 487,
+   "diff": -0.006772823660402105,
+   "stem_cluster_ci": [
+    -0.04593955584806414,
+    0.015425728552904005
+   ]
+  },
+  "mobilenet_v2": {
+   "acc_exposed": 0.9918256130790191,
+   "n_exposed": 734,
+   "acc_unexposed": 0.9958932238193019,
+   "n_unexposed": 487,
+   "diff": -0.004067610740282834,
+   "stem_cluster_ci": [
+    -0.023616618686847467,
+    0.008773544686458431
+   ]
+  },
+  "efficientnet_b0": {
+   "acc_exposed": 0.9904632152588556,
+   "n_exposed": 734,
+   "acc_unexposed": 0.9958932238193019,
+   "n_unexposed": 487,
+   "diff": -0.005430008560446287,
+   "stem_cluster_ci": [
+    -0.029171150327033626,
+    0.008639308855291628
+   ]
+  },
+  "densenet121": {
+   "acc_exposed": 0.9904632152588556,
+   "n_exposed": 734,
+   "acc_unexposed": 0.997946611909651,
+   "n_unexposed": 487,
+   "diff": -0.0074833966507953376,
+   "stem_cluster_ci": [
+    -0.029878744382465874,
+    0.003968649212673101
+   ]
+  }
+ }
+}

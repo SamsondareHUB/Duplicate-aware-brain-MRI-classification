@@ -1,0 +1,9 @@
+model,arm,n_run_records,train_seeds,epochs,input_commits,weights,device
+resnet50,A,5,[0],[10],['e78a2b7'],IMAGENET1K_V1,mps
+resnet50,B,5,[0],[10],['e78a2b7'],IMAGENET1K_V1,mps
+mobilenet_v2,A,5,[0],[10],['919d6f0'],MobileNet_V2_Weights.IMAGENET1K_V1,mps
+mobilenet_v2,B,5,[0],[10],['919d6f0'],MobileNet_V2_Weights.IMAGENET1K_V1,mps
+efficientnet_b0,A,5,[0],[10],['919d6f0'],EfficientNet_B0_Weights.IMAGENET1K_V1,mps
+efficientnet_b0,B,5,[0],[10],['919d6f0'],EfficientNet_B0_Weights.IMAGENET1K_V1,mps
+densenet121,A,5,[0],[10],['919d6f0'],DenseNet121_Weights.IMAGENET1K_V1,mps
+densenet121,B,5,[0],[10],['919d6f0'],DenseNet121_Weights.IMAGENET1K_V1,mps

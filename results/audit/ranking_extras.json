@@ -1,0 +1,504 @@
+{
+ "pairwise_and_interaction": {
+  "balanced_accuracy|resnet50-mobilenet_v2": {
+   "diff_patient_disjoint": [
+    0.014105214076403215,
+    0.00442617948536995,
+    0.024152188801202183
+   ],
+   "diff_imagelevel": [
+    0.01085751686468465,
+    0.005139469713315839,
+    0.016822144930284385
+   ],
+   "interaction_B_minus_A": [
+    -0.0032476972117185653,
+    -0.013863090223936395,
+    0.0071117054548757485
+   ],
+   "ci_A_excl0": true,
+   "ci_B_excl0": true,
+   "interaction_excl0": false
+  },
+  "balanced_accuracy|resnet50-efficientnet_b0": {
+   "diff_patient_disjoint": [
+    0.013636207641016916,
+    0.0042482098907304,
+    0.02312908696094918
+   ],
+   "diff_imagelevel": [
+    0.014621199459224797,
+    0.007057542982657747,
+    0.02257485404408483
+   ],
+   "interaction_B_minus_A": [
+    0.0009849918182078823,
+    -0.010173167345941899,
+    0.0124413882031909
+   ],
+   "ci_A_excl0": true,
+   "ci_B_excl0": true,
+   "interaction_excl0": false
+  },
+  "balanced_accuracy|resnet50-densenet121": {
+   "diff_patient_disjoint": [
+    -0.006877235951210836,
+    -0.015973758029633748,
+    0.0014709196973985274
+   ],
+   "diff_imagelevel": [
+    0.004289775211549437,
+    -0.0015075451249938836,
+    0.01040816289348962
+   ],
+   "interaction_B_minus_A": [
+    0.011167011162760275,
+    0.0005415225816906622,
+    0.02199665078742704
+   ],
+   "ci_A_excl0": false,
+   "ci_B_excl0": false,
+   "interaction_excl0": true
+  },
+  "balanced_accuracy|mobilenet_v2-efficientnet_b0": {
+   "diff_patient_disjoint": [
+    -0.00046900643538630053,
+    -0.010652618173121969,
+    0.009522680987357817
+   ],
+   "diff_imagelevel": [
+    0.003763682594540147,
+    -0.002565458158888631,
+    0.010844836064437527
+   ],
+   "interaction_B_minus_A": [
+    0.004232689029926448,
+    -0.006306250441207994,
+    0.015247928424824754
+   ],
+   "ci_A_excl0": false,
+   "ci_B_excl0": false,
+   "interaction_excl0": false
+  },
+  "balanced_accuracy|mobilenet_v2-densenet121": {
+   "diff_patient_disjoint": [
+    -0.020982450027614053,
+    -0.03323080203990837,
+    -0.009829805777442163
+   ],
+   "diff_imagelevel": [
+    -0.006567741653135212,
+    -0.013252888498661445,
+    0.0001328031407047393
+   ],
+   "interaction_B_minus_A": [
+    0.01441470837447884,
+    0.0029646118839067566,
+    0.026427530853224194
+   ],
+   "ci_A_excl0": true,
+   "ci_B_excl0": false,
+   "interaction_excl0": true
+  },
+  "balanced_accuracy|efficientnet_b0-densenet121": {
+   "diff_patient_disjoint": [
+    -0.020513443592227752,
+    -0.031613765304731804,
+    -0.01028732560346676
+   ],
+   "diff_imagelevel": [
+    -0.01033142424767536,
+    -0.018166495481131927,
+    -0.0029303300942149506
+   ],
+   "interaction_B_minus_A": [
+    0.010182019344552392,
+    -0.00039461276933836485,
+    0.02118020795581049
+   ],
+   "ci_A_excl0": true,
+   "ci_B_excl0": true,
+   "interaction_excl0": false
+  },
+  "macro_f1|resnet50-mobilenet_v2": {
+   "diff_patient_disjoint": [
+    0.012888050640633818,
+    0.003567561217923979,
+    0.022455510262745657
+   ],
+   "diff_imagelevel": [
+    0.00967898588861973,
+    0.004297460129891681,
+    0.015329210659367647
+   ],
+   "interaction_B_minus_A": [
+    -0.003209064752014089,
+    -0.013329016734865326,
+    0.006759837955936176
+   ],
+   "ci_A_excl0": true,
+   "ci_B_excl0": true,
+   "interaction_excl0": false
+  },
+  "macro_f1|resnet50-efficientnet_b0": {
+   "diff_patient_disjoint": [
+    0.011550256471952795,
+    0.0023558932996763067,
+    0.02079622758924648
+   ],
+   "diff_imagelevel": [
+    0.013365579872862259,
+    0.006503323179089543,
+    0.020658834202046665
+   ],
+   "interaction_B_minus_A": [
+    0.0018153234009094642,
+    -0.008682477537255267,
+    0.012819349955779437
+   ],
+   "ci_A_excl0": true,
+   "ci_B_excl0": true,
+   "interaction_excl0": false
+  },
+  "macro_f1|resnet50-densenet121": {
+   "diff_patient_disjoint": [
+    -0.007188748741485995,
+    -0.016057096147096488,
+    0.0011662137031637535
+   ],
+   "diff_imagelevel": [
+    0.0031606799264773193,
+    -0.0018944000571216783,
+    0.008568638285938384
+   ],
+   "interaction_B_minus_A": [
+    0.010349428667963314,
+    0.00012700083070561757,
+    0.020966413559237104
+   ],
+   "ci_A_excl0": false,
+   "ci_B_excl0": false,
+   "interaction_excl0": true
+  },
+  "macro_f1|mobilenet_v2-efficientnet_b0": {
+   "diff_patient_disjoint": [
+    -0.0013377941686810247,
+    -0.010559823688447371,
+    0.007704417920935734
+   ],
+   "diff_imagelevel": [
+    0.0036865939842425292,
+    -0.0020619350696123528,
+    0.009966107522587123
+   ],
+   "interaction_B_minus_A": [
+    0.0050243881529235535,
+    -0.00443976636801851,
+    0.015003267517152214
+   ],
+   "ci_A_excl0": false,
+   "ci_B_excl0": false,
+   "interaction_excl0": false
+  },
+  "macro_f1|mobilenet_v2-densenet121": {
+   "diff_patient_disjoint": [
+    -0.02007679938211981,
+    -0.03163220324604134,
+    -0.009896233411858498
+   ],
+   "diff_imagelevel": [
+    -0.006518305962142409,
+    -0.013027736345110768,
+    -0.0002450954203417166
+   ],
+   "interaction_B_minus_A": [
+    0.013558493419977401,
+    0.0024335678557722007,
+    0.02517052734711266
+   ],
+   "ci_A_excl0": true,
+   "ci_B_excl0": true,
+   "interaction_excl0": true
+  },
+  "macro_f1|efficientnet_b0-densenet121": {
+   "diff_patient_disjoint": [
+    -0.018739005213438787,
+    -0.02917799203750488,
+    -0.009329776641679879
+   ],
+   "diff_imagelevel": [
+    -0.010204899946384939,
+    -0.017183110618763944,
+    -0.003666802960946414
+   ],
+   "interaction_B_minus_A": [
+    0.00853410526705385,
+    -0.0015648006186770032,
+    0.019105295456911614
+   ],
+   "ci_A_excl0": true,
+   "ci_B_excl0": true,
+   "interaction_excl0": false
+  },
+  "accuracy|resnet50-mobilenet_v2": {
+   "diff_patient_disjoint": [
+    0.01052988617949143,
+    0.002362950631890312,
+    0.018688677825032734
+   ],
+   "diff_imagelevel": [
+    0.008842198256437258,
+    0.0040633553856238794,
+    0.013875139512286055
+   ],
+   "interaction_B_minus_A": [
+    -0.0016876879230541717,
+    -0.010617931541144602,
+    0.007271666482660759
+   ],
+   "ci_A_excl0": true,
+   "ci_B_excl0": true,
+   "interaction_excl0": false
+  },
+  "accuracy|resnet50-efficientnet_b0": {
+   "diff_patient_disjoint": [
+    0.009280723698271683,
+    0.0012919896640827238,
+    0.01728557393685128
+   ],
+   "diff_imagelevel": [
+    0.011820725792528724,
+    0.006160708107331228,
+    0.017743703962986742
+   ],
+   "interaction_B_minus_A": [
+    0.0025400020942570396,
+    -0.006709496277544938,
+    0.01234187263216826
+   ],
+   "ci_A_excl0": true,
+   "ci_B_excl0": true,
+   "interaction_excl0": false
+  },
+  "accuracy|resnet50-densenet121": {
+   "diff_patient_disjoint": [
+    -0.006762749218930807,
+    -0.014584692049638253,
+    0.0006644850055960628
+   ],
+   "diff_imagelevel": [
+    0.0029445838163299157,
+    -0.0013189901147025202,
+    0.007496971300360338
+   ],
+   "interaction_B_minus_A": [
+    0.009707333035260723,
+    0.0006383556023214249,
+    0.019111393777563546
+   ],
+   "ci_A_excl0": false,
+   "ci_B_excl0": false,
+   "interaction_excl0": true
+  },
+  "accuracy|mobilenet_v2-efficientnet_b0": {
+   "diff_patient_disjoint": [
+    -0.0012491624812197447,
+    -0.009071059813649885,
+    0.006167633758027571
+   ],
+   "diff_imagelevel": [
+    0.002978527536091466,
+    -0.001999479471370252,
+    0.008297412457497497
+   ],
+   "interaction_B_minus_A": [
+    0.004227690017311211,
+    -0.0039203195162417406,
+    0.012598032987937359
+   ],
+   "ci_A_excl0": false,
+   "ci_B_excl0": false,
+   "interaction_excl0": false
+  },
+  "accuracy|mobilenet_v2-densenet121": {
+   "diff_patient_disjoint": [
+    -0.017292635398422233,
+    -0.026990120050289803,
+    -0.008677876177455756
+   ],
+   "diff_imagelevel": [
+    -0.005897614440107341,
+    -0.011617119854122369,
+    -0.0006114641903278914
+   ],
+   "interaction_B_minus_A": [
+    0.011395020958314893,
+    0.0016981400558165939,
+    0.02136722820275609
+   ],
+   "ci_A_excl0": true,
+   "ci_B_excl0": true,
+   "interaction_excl0": true
+  },
+  "accuracy|efficientnet_b0-densenet121": {
+   "diff_patient_disjoint": [
+    -0.01604347291720249,
+    -0.025157537123965727,
+    -0.007939067676910853
+   ],
+   "diff_imagelevel": [
+    -0.008876141976198808,
+    -0.01485830699561306,
+    -0.003209011553273456
+   ],
+   "interaction_B_minus_A": [
+    0.0071673309410036825,
+    -0.0019052197802197327,
+    0.01667215463295926
+   ],
+   "ci_A_excl0": true,
+   "ci_B_excl0": true,
+   "interaction_excl0": false
+  }
+ },
+ "n_interaction_contrasts_excluding_0": {
+  "of": 18,
+  "n": 6,
+  "which": [
+   "balanced_accuracy|resnet50-densenet121",
+   "balanced_accuracy|mobilenet_v2-densenet121",
+   "macro_f1|resnet50-densenet121",
+   "macro_f1|mobilenet_v2-densenet121",
+   "accuracy|resnet50-densenet121",
+   "accuracy|mobilenet_v2-densenet121"
+  ]
+ },
+ "rank_identity_and_tau": {
+  "balanced_accuracy": {
+   "frac_reps_top_model_differs_between_protocols": 0.8768,
+   "frac_reps_densenet_top_A_and_resnet_top_B": 0.8698,
+   "frac_reps_resnet_top_A_and_resnet_top_B": 0.0528,
+   "tau_between_protocols_bootstrap_mean": 0.5328636300766737,
+   "tau_bootstrap_ci": [
+    0.3333333333333334,
+    1.0
+   ],
+   "tau_point": 0.3333333333333334,
+   "frac_reps_tau_gt_0": 0.9864,
+   "frac_reps_tau_eq_1": 0.069,
+   "frac_reps_full_ordering_identical_A_B": 0.069
+  },
+  "macro_f1": {
+   "frac_reps_top_model_differs_between_protocols": 0.851,
+   "frac_reps_densenet_top_A_and_resnet_top_B": 0.844,
+   "frac_reps_resnet_top_A_and_resnet_top_B": 0.0404,
+   "tau_between_protocols_bootstrap_mean": 0.5204666666666667,
+   "tau_bootstrap_ci": [
+    0.3333333333333334,
+    1.0
+   ],
+   "tau_point": 0.3333333333333334,
+   "frac_reps_tau_gt_0": 0.9856,
+   "frac_reps_tau_eq_1": 0.0734,
+   "frac_reps_full_ordering_identical_A_B": 0.0734
+  }
+ },
+ "metric_sensitivity_top_model": {
+  "A|balanced_accuracy": "densenet121",
+  "A|macro_f1": "densenet121",
+  "A|accuracy": "densenet121",
+  "A|brier": "densenet121",
+  "A|nll": "densenet121",
+  "B|balanced_accuracy": "resnet50",
+  "B|macro_f1": "resnet50",
+  "B|accuracy": "resnet50",
+  "B|brier": "resnet50",
+  "B|nll": "resnet50"
+ },
+ "patient_weighted_top_model": {
+  "A": [
+   "densenet121",
+   "resnet50",
+   "mobilenet_v2",
+   "efficientnet_b0"
+  ],
+  "B": [
+   "resnet50",
+   "densenet121",
+   "mobilenet_v2",
+   "efficientnet_b0"
+  ]
+ },
+ "patient_weighted_resnet_vs_densenet": {
+  "A": {
+   "resnet50_minus_densenet121_pw_BA": [
+    -0.011027269136565931,
+    -0.024702474409094764,
+    0.001686912767044106
+   ]
+  },
+  "B": {
+   "resnet50_minus_densenet121_pw_BA": [
+    0.006801622912222638,
+    -0.0044527890009492446,
+    0.018454489722332604
+   ]
+  }
+ },
+ "per_fold_resnet_minus_densenet_sign": {
+  "A": [
+   1,
+   -1,
+   -1,
+   1,
+   -1
+  ],
+  "B": [
+   1,
+   -1,
+   0,
+   1,
+   1
+  ]
+ },
+ "naive_vs_cluster_resnet_minus_densenet_BA": {
+  "A": {
+   "naive_image_bootstrap_ci": [
+    -0.01414040564918928,
+    0.0002506286268201737
+   ],
+   "patient_cluster_ci": [
+    -0.015973758029633748,
+    0.0014709196973985274
+   ],
+   "naive_width": 0.014391034276009454,
+   "cluster_width": 0.017444677727032277,
+   "naive_excludes_zero": false,
+   "cluster_excludes_zero": false
+  },
+  "B": {
+   "naive_image_bootstrap_ci": [
+    -0.0010206040364180665,
+    0.00967457336576833
+   ],
+   "patient_cluster_ci": [
+    -0.0015075451249938836,
+    0.01040816289348962
+   ],
+   "naive_width": 0.010695177402186395,
+   "cluster_width": 0.011915708018483503,
+   "naive_excludes_zero": false,
+   "cluster_excludes_zero": false
+  }
+ },
+ "mean_ci_width_BA_by_arm": {
+  "A": 0.049724719713967,
+  "B": 0.01701386586862158
+ },
+ "n_resolved_pairs_of_6": {
+  "balanced_accuracy|A": 4,
+  "balanced_accuracy|B": 3,
+  "macro_f1|A": 4,
+  "macro_f1|B": 4
+ }
+}
