@@ -44,6 +44,6 @@ def test_historical_splits_untouched_and_manifests_hashed():
 
 def test_dry_run_runs_and_train_refused_without_approval():
     r = subprocess.run([sys.executable, str(ROOT / "scripts/run_retrain_209.py"), "--dry-run"], capture_output=True, text=True)
-    assert r.returncode == 0 and "runs=40" in r.stdout
+    assert r.returncode == 0 and "distinct=20" in r.stdout and "no_response=40" in r.stdout
     r = subprocess.run([sys.executable, str(ROOT / "scripts/run_retrain_209.py"), "--train"], capture_output=True, text=True)
     assert r.returncode != 0

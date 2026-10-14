@@ -1,6 +1,6 @@
-# 209-group retraining plan — PROPOSED, NOT EXECUTED
+# 209-group retraining plan — PROPOSED, NOT EXECUTED (decision policy finalised by Sammie)
 
-**Status: nothing in this document has been trained or run. No checkpoint, prediction or metric from a 209-group model exists.** All manifests under `data/splits/proposed_209/` are labeled **PROPOSED / NOT YET USED FOR TRAINING**. Historical splits and PR #1/#2 outputs are unchanged (SHA-256 re-checked: A `61bec5aa…3e49e`, B `e8b0442c…74f2`). Branch: PR #3 branch (open, not merged).
+**Status: nothing in this document has been trained or run. No checkpoint, prediction or metric from a 209-group model exists.** All manifests under `data/splits/proposed_209/` are labeled **PROPOSED / NOT YET USED FOR TRAINING**. Historical splits and PR #1/#2 outputs are unchanged (SHA-256 re-checked: A `61bec5aa…3e49e`, B `e8b0442c…74f2`). Branch: PR #3 branch (open, not merged). The split-selection algorithm (`minmove`, §3) still awaits Sammie's final approval; the manifests are unchanged and regenerate byte-identically (SHA-256 `6b8f98cc…6313` A209, `8fa98fd8…1c51` B209).
 
 Label convention (repo, PR #1): file label **A = patient-disjoint**, **B = image-level seed 11**. New arms are named **A209** (stem-disjoint) and **B209** (matched image-level) to avoid confusion.
 
@@ -45,75 +45,85 @@ Manifest SHA-256 (proposed; see JSON): A209_minmove `6b8f98cc…6313`, B209 `8fa
 
 Regenerate: `python scripts/make_splits_209.py` (writes only to `data/splits/proposed_209/`).
 
-## 4. Run matrix (proposed; none run)
-Completed under PR #1/#2: 4 models × arms A,B × 5 folds, train seed 0 only (40 runs; `results/audit/run_inventory.csv`). There are **no additional seeds**, so the new matrix also uses train seed 0.
+## 4. Final author-response policy (confirmed by Sammie) and run matrices
+| Author outcome | Primary analysis | Training after explicit approval | Matrix file |
+|---|---|---|---|
+| Suffix variants = **different patients** | original 233-ID (PR #1/#2) | **20 runs**: A209 only (4 models × 5 folds), as a patient-disjoint sensitivity analysis | `run_matrix_209_distinct_20.csv` |
+| Suffix variants = **repeated scans of the same person** | **209-group** | **40 runs**: A209 + matched B209 (4 × 5 × 2) | `run_matrix_209_repeated_or_noresponse_40.csv` |
+| **No response** after a *reasonable, team-approved* waiting period | **conservative 209-group**; 233-ID becomes sensitivity | same **40 runs** | same 40-run file |
 
-| Model | Arm | Folds | Seed | Split file | Output |
-|---|---|---|---|---|---|
-| resnet50, mobilenet_v2, efficientnet_b0, densenet121 | A209 (primary) | 1–5 | 0 | `PROPOSED_A209_minmove.csv` | `results/retrain_209/runs/{model}_A209_fold{k}_{predictions.csv,run.json}` |
-| same four | B209 (matched control) | 1–5 | 0 | `PROPOSED_B209_imagelevel_seed11.csv` | same pattern with `B209` |
+- The waiting deadline is **not chosen here**; it is a team decision. Nothing trains under any scenario without explicit approval; the runner enforces this (`--approved-by` + `--scenario`; scenario `distinct` refuses B209).
+- Both matrices: models resnet50, mobilenet_v2, efficientnet_b0, densenet121; folds 1–5; **original train seed 0** (the only seed used in PR #1/#2). This is **not a multi-seed replication**; extra seeds need separate team approval (+20 runs per added seed per arm).
+- Verified by tests: 20 and 40 rows, unique run IDs, seed 0 everywhere, estimated 1.63 h / 3.27 h of training.
+- Outputs: `results/retrain_209/runs/{model}_{arm}_fold{k}_{predictions.csv,run.json}` (+ `environment_{model}_{arm}.json`). Like PR #1/#2 the pipeline stores predictions and run records, not weights.
 
-- **Total: 40 runs** (20 primary A209 + 20 B209). Minimum if only the stem-disjoint arm is wanted: **20**. Every fold's training set changes (moved images touch all five folds), so no existing run can be reused for A209. Machine-readable: `data/splits/proposed_209/run_matrix_209.csv`.
-- Config identical to PR #1: `CFG` in `scripts/run_sanity.py` (224², batch 32, 10 epochs, AdamW lr 1e-4 wd 1e-4, per-iteration cosine to 0, plain CE, hflip + ±10° rotation, ImageNet-V1 weights, final epoch, no early stopping, train seed 0 reset per fold, eval batch 64). No hyperparameter tuning.
-- Checkpoints: the existing pipeline saves **predictions + run JSON, not model weights**; the same applies here.
+## 5. Protocol parity with PR #1 / PR #2 (code-level only)
+`tests/test_runner_parity.py` (42 checks) verifies that each training/evaluation statement exists **verbatim in both** `run_multimodel.py` (PR #2) and `run_retrain_209.py`, and the ResNet50 build lines verbatim in `run_sanity.py` (PR #1):
 
-## 5. Preserved vs changed
-| Preserved | Changed / cannot stay identical |
+| Element | Status |
 |---|---|
-| Images, preprocessing cache, 4 architectures, CFG, train seed 0, metrics, 5-fold OOF design, bootstrap (5,000 reps, seed 2026, class-stratified cluster) | Fold membership of 332 glioma images (10.8%) → every fold's train and test set differs from PR #1/#2; therefore A209 is **not** a re-run of A on identical test folds |
-| B-arm construction function, seed 11 | B209 fold assignment differs from B (it follows the A209 margins); old B ≠ B209 |
-| Output schema (+ `stem` column) | Bootstrap cluster = stem (209 units) instead of raw PID (233) for 209 analyses |
-| MPS non-bitwise determinism caveat | Not bitwise-reproducing old runs; run-to-run noise with the same seed is unmeasured |
+| Preprocessing (`load_all`, cached `pre224.npy`, min-max → 224², 3-ch ImageNet mean/std in `to_input`) | **imported** from PR #1 modules, not re-implemented; runner refuses to regenerate the cache silently |
+| Augmentation (hflip p=0.5, rotation ±10° bilinear fill 0, generator seed 0+1) | `augment` imported; generator lines identical |
+| Architectures + ImageNet-V1 weights | MobileNetV2/EfficientNet-B0/DenseNet121 via imported `make_model`/`WEIGHTS`; ResNet50 lines identical to `run_sanity.py`; head shapes checked (weights not downloaded in test) |
+| Batch 32, 10 epochs, AdamW lr 1e-4 wd 1e-4, per-iteration cosine (T_max = total steps, eta_min 0), plain CE, final epoch, no early stopping | `CFG` imported from `run_sanity.py`; frozen values asserted; statements identical |
+| Train seed 0 reset per fold (torch, numpy, data and aug generators) | identical |
+| Evaluation (eval batch 64, `model.eval()`, `no_grad`, float64 softmax from logits) | identical |
 
-Also unchanged and unresolved: the MR-vs-numeric ID format confound (MR glioma ≈99% vs numeric-ID glioma 76–83%).
+Known, documented differences (none intended to change numerics, but **not provable without a GPU run**): (i) ResNet50 under the new runner follows the PR #2 loop (per-epoch `torch.mps.empty_cache()`, tensor `del`s) whereas PR #1's ResNet50 script did not; (ii) fold membership (332 images moved) so train/test sets differ; (iii) MPS is not bitwise deterministic, so even identical inputs would not reproduce old numbers exactly; (iv) the PR #2 per-step memory print was dropped (logging only).
 
-## 6. Evaluation and statistical plan
-Re-use `analyze_multimodel.py` logic (metrics: accuracy, BA, macro-F1, per-class P/R/F1, confusion matrices, ECE, Brier, reliability bins; 5,000-rep paired bootstrap, seed 2026; ranking tables, Kendall τ, top-rank frequencies) via a copy parameterised by split family and stem clustering — **to be written after approval** (not yet implemented; no run output exists to test it on). Plus split-integrity verification (`validate()` in `run_retrain_209.py`, `tests/test_splits_209.py`).
+**Not verified (needs real GPU, not done):** that the real training function runs end-to-end, MPS memory behaviour, actual runtimes, and that `serial_209.py` launches the child correctly on this Mac.
 
-Comparisons:
-1. **Primary after retraining:** A209 vs B209 (same 3,064 images, identical fold×class margins, stem-clustered paired bootstrap) = protocol effect under the conservative identity.
-2. **Orig-233 vs 209 (A vs A209):** same images, different train/test partitions. Report as a *robustness comparison*, not a matched paired experiment, with a secondary subset analysis on the 2,732 images whose test fold did not change. Differences include run noise (single seed) and cannot be attributed to leakage alone.
-3. Ranking comparison across four models in A, A209, B, B209; ResNet50−DenseNet121 contrast already includes 0 in A and B, so expect non-resolution unless A209 differs; no claim pre-registered.
-4. Clearly separate in the paper: *completed* (prediction-only sensitivity, `results/audit/patient_id/`) vs *requires retraining* (anything A209/B209).
+## 6. Prediction schema
+Per-fold prediction CSV columns (`SCHEMA` in `run_retrain_209.py`), checked by tests against the real PR #1/#2 files:
+- **PR #2 common mandatory fields (exactly the 15 columns of the PR #2 files):** model, arm, image_id, patient_id, protocol, test_fold, true_class, true_class_name, prob_0–2, pred_class, pred_class_name, confidence, experiment_input_commit.
+- **PR #1 ResNet50-specific columns, now written for all four models:** logit_0–2 and the exposure columns (n_other_total, n_other_train, frac_other_train, single_slice_patient, has_same_patient_train_slice; computed by raw patient ID as in PR #1). PR #2 files for the other three models do not contain these.
+- **209 additions:** `stem`, `split_sha256`.
+- Arm/protocol labels are new (`A209`/`B209`, `patient_disjoint_209`/`image_level_209_seed11`) so they cannot be confused with historical `A`/`B`.
+- Run JSON = PR #2 fields + `predictions_sha256`, `scenario`, `approved_by`, `cfg`.
 
-## 7. Compute / time (Apple-silicon MPS, from PR #1/#2 run JSONs; no paid compute, no new downloads)
-| Model | s / fold-run | 5 folds |
+## 7. Resume safety and Mac protections
+- A fold is skipped **only if both** its prediction CSV and run JSON exist and independently pass checks (schema, image set = split fold, arm/fold/model/protocol, patient/stem/label match to the split, probabilities, argmax/confidence/class names, finite logits; JSON: model/arm/fold/device `mps`/split SHA/epoch count/seed 0/n_train/n_test/hash of the CSV). One file alone, leftover `.tmp`, corrupt or mismatching files raise `RunIntegrityError`; nothing is skipped or overwritten. `--quarantine-partial MODEL ARM FOLD` moves the files aside (never deletes) so the fold can be rerun.
+- Publishing a fold ignores SIGINT/SIGTERM during the two atomic file replacements (CSV first, then JSON containing the CSV hash).
+- `scripts/serial_209.py` ports the PR #2 protocol: single lock, serial execution, one fold per child process under `caffeinate` + `nice`, preflight (RAM ≥ 8 GiB, memory-pressure free ≥ 35%, disk, thermal, responsiveness; bounded wait, no automatic retry), 60 s cooling between folds, 15 s active monitoring that sends **SIGINT only to its own child session** on unsafe state, completed folds retained. It never signals other processes, never restarts/shuts down the Mac, and does **not** push to git (PR #2's per-fold auto-push was dropped; publish manually after review).
+- Verified with synthetic fixtures: resume skips completed folds without retraining, nine corruption/partial modes refused, unsafe-host stop kills only the test child, preflight timeout blocks launch, synthetic runs can never pass as real `mps` runs. **Not verified on real hardware.**
+
+## 8. Analysis pipeline (`scripts/analyze_209.py`, validated on synthetic fixtures only)
+- Frozen metric/bootstrap code from `src/leakage` is reused unchanged: accuracy, balanced accuracy, macro-F1, per-class P/R/F1 with CIs, confusion matrices, 15-bin ECE, Brier, reliability bins and diagrams, pairwise model differences, rankings, Kendall τ, top-rank frequencies; **5,000 class-stratified paired cluster replicates, seed 2026**, one draw matrix shared by all models and arms.
+- **Documented change:** bootstrap cluster = **209 stems** (not 233 raw IDs). Historical predictions that are re-analysed in the robustness table are re-clustered by stem too.
+- **A209 vs B209 = matched:** same 3,064 images, identical fold×class counts, same stem draws (`protocol_differences_209.csv`, labeled MATCHED).
+- **Original 233-ID (A) vs A209 = robustness only** (`robustness_original233_vs_A209.csv`, labeled ROBUSTNESS ONLY): changed fold assignment, single seed, differences include run noise; secondary subset on the 2,732 images whose test fold is unchanged (train sets still differ). **A209 is never compared with historical B**, and the pipeline has no code path that does.
+- Already completed (no retraining): prediction-only stem-clustered sensitivity (`results/audit/patient_id/`). Everything above on A209/B209 requires retraining and does not exist.
+- Run: `python scripts/analyze_209.py --scenario distinct|repeated|no_response` (works only once all required folds exist and pass integrity checks).
+
+## 9. Compute / time
+| Model | s per fold-run | 5 folds |
 |---|---|---|
 | ResNet50 | ~377 | 31 min |
 | MobileNetV2 | ~169 | 14 min |
 | EfficientNet-B0 | ~241 | 20 min |
 | DenseNet121 | ~390 | 33 min |
-| **One arm (20 runs)** | | **≈1.6 h** |
-| **Both arms (40 runs)** | | **≈3.3 h** training + runner's 20-min-max cooling/RAM checks between folds (the PR #2 runner inserts them; wall clock may be ~1.5–2×, i.e. up to ~6 h) |
+| **20 runs (A209 only)** | | **≈1.6 h** training |
+| **40 runs (A209 + B209)** | | **≈3.3 h** training |
 
-Resources: one MPS GPU job at a time (sequential), a few GiB unified memory (planning figures, not measured), no extra disk beyond ~tens of MB of CSVs. Run only with the Mac otherwise idle; do not shut down/restart it.
+Add the 60 s cooling pauses and preflight waits (≈ +5–10%); PR #2's 20-minute guard could stretch wall clock under memory pressure. Estimates come from past MPS runs and are unverified for this runner. No paid compute; one local MPS job at a time; the Mac should otherwise be idle.
 
-## 8. Author-response scenarios
-- **A. Suffixes = different patients:** keep the 233-ID evaluation (PR #1/#2) as primary; A209/B209 is an optional conservative robustness analysis (A209 only, 20 runs, or none if the existing sensitivity suffices).
-- **B. Suffixes = same patient (repeated scans):** A209/B209 becomes the primary patient-disjoint evaluation; the 233-ID results are reported as the original-fold reference showing partial leakage. Run all 40 (or 20 if B comparison is judged adequate by the old B + sensitivity). Methods/Results must be rewritten around 209 units.
-- **C. No author response — PENDING TEAM DECISION. I do not choose.** Sammie's two proposed approaches are not in the repository files I can read, and I do not want to guess their wording; below are the two options that the scenario logically allows — **please confirm which match Sammie's messages**:
-  - **C1 (233-primary + 209 as sensitivity):** conservative with respect to claims already made; costs 0–20 runs; paper states the identity ambiguity and shows 209 robustness. Risk: a reviewer may say the primary analysis may leak if suffix = same person.
-  - **C2 (209-primary / worst-case-safe):** treat the ambiguity as a potential leak and report the 209 stem-disjoint analysis as primary; costs 20–40 runs and rewrites Methods/Results; may slightly understate patient count (209 vs 233) if suffixes are in fact different patients. Safest against leakage criticism.
-  - Either way both numbers must appear and the "233 patients" claim must carry the disclosure.
-- **No retraining starts under any scenario until Sammie/team approves in writing.**
-
-## 9. Exact commands (RUN ONLY AFTER APPROVAL)
+## 10. Commands (RUN ONLY AFTER EXPLICIT APPROVAL; none executed)
 ```bash
-# 0. safe, already runnable: verify splits and matrix (no torch import, no training)
+# Safe checks (no training)
 python scripts/make_splits_209.py && python scripts/run_retrain_209.py --dry-run && python -m pytest -q tests
-# 1. one-fold smoke test of the new runner (needs approval; ~3 min, writes results/retrain_209/ only)
-python scripts/run_retrain_209.py --train --approved-by "<name, date>" --model mobilenet_v2 --arm A209 --max-new-runs 1
-# 2. full primary arm, one model at a time (resumable; skips existing outputs)
+# Scenario "distinct" (20 runs)  -- or replace --scenario/arms for the 40-run scenarios
 for m in mobilenet_v2 efficientnet_b0 resnet50 densenet121; do
-  python scripts/run_retrain_209.py --train --approved-by "<name, date>" --model $m --arm A209; done
-# 3. optional matched control
-for m in mobilenet_v2 efficientnet_b0 resnet50 densenet121; do
-  python scripts/run_retrain_209.py --train --approved-by "<name, date>" --model $m --arm B209; done
+  python scripts/serial_209.py --model $m --arm A209 --scenario distinct --approved-by "<name, date>"; done
+# Scenarios "repeated" or "no_response" (40 runs): A209 then B209
+for arm in A209 B209; do for m in mobilenet_v2 efficientnet_b0 resnet50 densenet121; do
+  python scripts/serial_209.py --model $m --arm $arm --scenario repeated --approved-by "<name, date>"; done; done   # or --scenario no_response
+python scripts/analyze_209.py --scenario repeated        # after all 40 runs verify
 ```
-Known caveat: the training branch of `run_retrain_209.py` mirrors `run_multimodel.py` but **has not been executed**; step 1 is its first real test, and results from step 1 should be discarded or kept only if it passes review. The stem-clustered analysis script for the new outputs is also still to be written (§6).
+Recommended first step if approved: a one-fold run (`python scripts/run_retrain_209.py --train --approved-by "…" --scenario … --model mobilenet_v2 --arm A209 --max-new-runs 1`) to validate the real training path before committing hours; its output is a real result of the proposed experiment and should be kept only if it passes review.
 
-## 10. Decisions needed from Sammie
-1. Scenario C choice (C1 vs C2) — and confirm the author email may be sent (not yet sent).
-2. Approve A209 `minmove` as the primary corrected split (vs StratifiedGroupKFold alternative).
-3. Approve 20 runs (A209) or 40 (A209+B209); approve the single-seed limitation or ask for extra seeds (+20 runs per added seed per arm).
-4. Approve the hypothetical normalisation rule as the 209 definition.
+## 11. Remaining blockers / decisions for Sammie
+1. Approve (or change) the split-selection algorithm `A209_minmove` (§3) — the code is frozen to it until then.
+2. Approve sending the drafted author question (not sent) and fix the waiting period for "no response" (not chosen by us).
+3. Explicit written approval to start training for the applicable scenario (20 or 40 runs); recommended first as one-fold real-path validation.
+4. Approve the single-seed limitation (no extra seeds without approval).
+5. Confirm bootstrap cluster change (233 raw IDs → 209 stems) for A209/B209 analyses.
