@@ -1,0 +1,2 @@
+PROPOSED / NOT YET USED FOR TRAINING
+No model has been trained on these manifests. See reports/RETRAINING_PLAN_209_GROUPS.md.

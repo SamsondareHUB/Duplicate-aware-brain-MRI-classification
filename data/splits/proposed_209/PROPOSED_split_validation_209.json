@@ -1,0 +1,216 @@
+{
+ "status": "PROPOSED / NOT YET USED FOR TRAINING",
+ "rule": "strip one trailing [A-Z] from ^MR\\d{6}[A-Z]$ only",
+ "original": {
+  "fold_sizes": {
+   "1": 542,
+   "2": 679,
+   "3": 572,
+   "4": 628,
+   "5": 643
+  },
+  "fold_x_class": {
+   "1": {
+    "1": 112,
+    "2": 245,
+    "3": 185
+   },
+   "2": {
+    "1": 167,
+    "2": 338,
+    "3": 174
+   },
+   "3": {
+    "1": 139,
+    "2": 231,
+    "3": 202
+   },
+   "4": {
+    "1": 124,
+    "2": 325,
+    "3": 179
+   },
+   "5": {
+    "1": 166,
+    "2": 287,
+    "3": 190
+   }
+  },
+  "stem_integrity": {
+   "stems_in_more_than_one_fold": 16,
+   "raw_pids_in_more_than_one_fold": 0,
+   "n_stems": 209,
+   "n_raw_pids": 233,
+   "rows": 3064,
+   "each_image_once": true,
+   "folds": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "stem_single_class": true
+  }
+ },
+ "A209_minmove": {
+  "fold_sizes": {
+   "1": 514,
+   "2": 708,
+   "3": 552,
+   "4": 625,
+   "5": 665
+  },
+  "fold_x_class": {
+   "1": {
+    "1": 112,
+    "2": 217,
+    "3": 185
+   },
+   "2": {
+    "1": 167,
+    "2": 367,
+    "3": 174
+   },
+   "3": {
+    "1": 139,
+    "2": 211,
+    "3": 202
+   },
+   "4": {
+    "1": 124,
+    "2": 322,
+    "3": 179
+   },
+   "5": {
+    "1": 166,
+    "2": 309,
+    "3": 190
+   }
+  },
+  "integrity": {
+   "stems_in_more_than_one_fold": 0,
+   "raw_pids_in_more_than_one_fold": 0,
+   "n_stems": 209,
+   "n_raw_pids": 233,
+   "rows": 3064,
+   "each_image_once": true,
+   "folds": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "stem_single_class": true
+  },
+  "n_images_moved": 332,
+  "frac_images_moved": 0.1084,
+  "n_stems_moved": 16,
+  "n_raw_pids_moved": 18,
+  "images_moved_by_class": {
+   "2": 332
+  }
+ },
+ "A209_sgkf_alternative": {
+  "fold_sizes": {
+   "1": 613,
+   "2": 613,
+   "3": 613,
+   "4": 613,
+   "5": 612
+  },
+  "fold_x_class": {
+   "1": {
+    "1": 142,
+    "2": 284,
+    "3": 187
+   },
+   "2": {
+    "1": 142,
+    "2": 286,
+    "3": 185
+   },
+   "3": {
+    "1": 142,
+    "2": 285,
+    "3": 186
+   },
+   "4": {
+    "1": 141,
+    "2": 285,
+    "3": 187
+   },
+   "5": {
+    "1": 141,
+    "2": 286,
+    "3": 185
+   }
+  },
+  "integrity": {
+   "stems_in_more_than_one_fold": 0,
+   "raw_pids_in_more_than_one_fold": 0,
+   "n_stems": 209,
+   "n_raw_pids": 233,
+   "rows": 3064,
+   "each_image_once": true,
+   "folds": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "stem_single_class": true
+  },
+  "frac_images_same_fold_as_original": 0.1446,
+  "note": "fold numbers arbitrary; not comparable to original folds; fewer-constraints alternative"
+ },
+ "B209_imagelevel_seed11": {
+  "fold_sizes": {
+   "1": 514,
+   "2": 708,
+   "3": 552,
+   "4": 625,
+   "5": 665
+  },
+  "fold_x_class": {
+   "1": {
+    "1": 112,
+    "2": 217,
+    "3": 185
+   },
+   "2": {
+    "1": 167,
+    "2": 367,
+    "3": 174
+   },
+   "3": {
+    "1": 139,
+    "2": 211,
+    "3": 202
+   },
+   "4": {
+    "1": 124,
+    "2": 322,
+    "3": 179
+   },
+   "5": {
+    "1": 166,
+    "2": 309,
+    "3": 190
+   }
+  },
+  "fold_x_class_equals_A209_minmove": true,
+  "deterministic": true
+ },
+ "sha256": {
+  "PROPOSED_A209_minmove.csv": "6b8f98cc68429a64f48ad3469ff4574c2db32053fc63dcc11daeeb5811586313",
+  "PROPOSED_A209_sgkf_alternative.csv": "b3bac5b25fa84ddee1d9dd9b1b2966ddd18077a1b31a135bdafc1be6ab27e823",
+  "PROPOSED_B209_imagelevel_seed11.csv": "8fa98fd87ad98d957893a387c76e0a1866067d142f8bd5364a0592b086181c51"
+ },
+ "frozen_inputs_sha256": {
+  "patient_disjoint_original.csv": "61bec5aaf9a5f4fce4adf89b186ffd6479eb0f6095ee20b8f60ef44274a3e49e",
+  "imagelevel_seed11.csv": "e8b0442c107396fe66a989b8d448aa0e524c1c554823a711db3cc84beeee74f2"
+ }
+}

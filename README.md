@@ -29,6 +29,7 @@ python scripts/reproduce_from_predictions.py                      # 200 checks; 
 python scripts/ranking_reliability_extras.py                      # exploratory ranking diagnostics
 python scripts/pid_suffix_sensitivity.py                          # patient-ID-suffix provenance sensitivity
 python scripts/validate_patient_ids.py                            # patient-ID suffix validation (reports/PATIENT_ID_VALIDATION.md)
+python scripts/make_splits_209.py                                 # PROPOSED 209-group splits (not used for training); plan: reports/RETRAINING_PLAN_209_GROUPS.md
 python -m pytest -q tests
 ```
 `reproduce_from_predictions.py` recomputes, from the committed out-of-fold (OOF) predictions and frozen splits only: split hashes and
