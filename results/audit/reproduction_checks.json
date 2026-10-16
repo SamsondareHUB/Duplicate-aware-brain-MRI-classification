@@ -1,0 +1,1002 @@
+[
+ {
+  "check": "split sha256 A (patient_disjoint_original.csv)",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "split A: 3064 unique images, 233 patients, folds 1-5",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "split sha256 B (imagelevel_seed11.csv)",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "split B: 3064 unique images, 233 patients, folds 1-5",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "A is patient-disjoint (0 patients in >1 fold)",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "B is NOT patient-disjoint (patients spanning >1 fold)",
+  "status": "PASS",
+  "detail": "224 of 233 patients span >=2 folds"
+ },
+ {
+  "check": "A/B identical fold sizes",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "A/B identical fold x class table",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "each patient has exactly one class",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "resnet50/A: 3064 OOF rows, ids/patients/folds/labels == split file",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "resnet50/A: finite probs in [0,1], rows sum to 1 (max dev 4.44e-16)",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "resnet50/A: pred_class == argmax(prob)",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "resnet50/A: no duplicated (image) rows",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "resnet50/A: 5 run records",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "resnet50/A A_fold1_run.json: split_sha256 matches A",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "resnet50/A fold1: per-fold predictions == consolidated OOF rows and n_test",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "resnet50/A fold1: n_train+n_test=3064",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "resnet50/A A_fold2_run.json: split_sha256 matches A",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "resnet50/A fold2: per-fold predictions == consolidated OOF rows and n_test",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "resnet50/A fold2: n_train+n_test=3064",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "resnet50/A A_fold3_run.json: split_sha256 matches A",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "resnet50/A fold3: per-fold predictions == consolidated OOF rows and n_test",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "resnet50/A fold3: n_train+n_test=3064",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "resnet50/A A_fold4_run.json: split_sha256 matches A",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "resnet50/A fold4: per-fold predictions == consolidated OOF rows and n_test",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "resnet50/A fold4: n_train+n_test=3064",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "resnet50/A A_fold5_run.json: split_sha256 matches A",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "resnet50/A fold5: per-fold predictions == consolidated OOF rows and n_test",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "resnet50/A fold5: n_train+n_test=3064",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "resnet50/A: train_seed 0 and 10 epochs for all folds",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "resnet50/B: 3064 OOF rows, ids/patients/folds/labels == split file",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "resnet50/B: finite probs in [0,1], rows sum to 1 (max dev 4.44e-16)",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "resnet50/B: pred_class == argmax(prob)",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "resnet50/B: no duplicated (image) rows",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "resnet50/B: 5 run records",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "resnet50/B B_fold1_run.json: split_sha256 matches B",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "resnet50/B fold1: per-fold predictions == consolidated OOF rows and n_test",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "resnet50/B fold1: n_train+n_test=3064",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "resnet50/B B_fold2_run.json: split_sha256 matches B",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "resnet50/B fold2: per-fold predictions == consolidated OOF rows and n_test",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "resnet50/B fold2: n_train+n_test=3064",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "resnet50/B B_fold3_run.json: split_sha256 matches B",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "resnet50/B fold3: per-fold predictions == consolidated OOF rows and n_test",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "resnet50/B fold3: n_train+n_test=3064",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "resnet50/B B_fold4_run.json: split_sha256 matches B",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "resnet50/B fold4: per-fold predictions == consolidated OOF rows and n_test",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "resnet50/B fold4: n_train+n_test=3064",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "resnet50/B B_fold5_run.json: split_sha256 matches B",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "resnet50/B fold5: per-fold predictions == consolidated OOF rows and n_test",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "resnet50/B fold5: n_train+n_test=3064",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "resnet50/B: train_seed 0 and 10 epochs for all folds",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "mobilenet_v2/A: 3064 OOF rows, ids/patients/folds/labels == split file",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "mobilenet_v2/A: finite probs in [0,1], rows sum to 1 (max dev 4.44e-16)",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "mobilenet_v2/A: pred_class == argmax(prob)",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "mobilenet_v2/A: no duplicated (image) rows",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "mobilenet_v2/A: 5 run records",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "mobilenet_v2/A mobilenet_v2_A_fold1_run.json: split_sha256 matches A",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "mobilenet_v2/A fold1: per-fold predictions == consolidated OOF rows and n_test",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "mobilenet_v2/A fold1: n_train+n_test=3064",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "mobilenet_v2/A mobilenet_v2_A_fold2_run.json: split_sha256 matches A",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "mobilenet_v2/A fold2: per-fold predictions == consolidated OOF rows and n_test",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "mobilenet_v2/A fold2: n_train+n_test=3064",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "mobilenet_v2/A mobilenet_v2_A_fold3_run.json: split_sha256 matches A",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "mobilenet_v2/A fold3: per-fold predictions == consolidated OOF rows and n_test",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "mobilenet_v2/A fold3: n_train+n_test=3064",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "mobilenet_v2/A mobilenet_v2_A_fold4_run.json: split_sha256 matches A",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "mobilenet_v2/A fold4: per-fold predictions == consolidated OOF rows and n_test",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "mobilenet_v2/A fold4: n_train+n_test=3064",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "mobilenet_v2/A mobilenet_v2_A_fold5_run.json: split_sha256 matches A",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "mobilenet_v2/A fold5: per-fold predictions == consolidated OOF rows and n_test",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "mobilenet_v2/A fold5: n_train+n_test=3064",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "mobilenet_v2/A: train_seed 0 and 10 epochs for all folds",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "mobilenet_v2/B: 3064 OOF rows, ids/patients/folds/labels == split file",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "mobilenet_v2/B: finite probs in [0,1], rows sum to 1 (max dev 5.55e-16)",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "mobilenet_v2/B: pred_class == argmax(prob)",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "mobilenet_v2/B: no duplicated (image) rows",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "mobilenet_v2/B: 5 run records",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "mobilenet_v2/B mobilenet_v2_B_fold1_run.json: split_sha256 matches B",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "mobilenet_v2/B fold1: per-fold predictions == consolidated OOF rows and n_test",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "mobilenet_v2/B fold1: n_train+n_test=3064",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "mobilenet_v2/B mobilenet_v2_B_fold2_run.json: split_sha256 matches B",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "mobilenet_v2/B fold2: per-fold predictions == consolidated OOF rows and n_test",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "mobilenet_v2/B fold2: n_train+n_test=3064",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "mobilenet_v2/B mobilenet_v2_B_fold3_run.json: split_sha256 matches B",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "mobilenet_v2/B fold3: per-fold predictions == consolidated OOF rows and n_test",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "mobilenet_v2/B fold3: n_train+n_test=3064",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "mobilenet_v2/B mobilenet_v2_B_fold4_run.json: split_sha256 matches B",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "mobilenet_v2/B fold4: per-fold predictions == consolidated OOF rows and n_test",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "mobilenet_v2/B fold4: n_train+n_test=3064",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "mobilenet_v2/B mobilenet_v2_B_fold5_run.json: split_sha256 matches B",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "mobilenet_v2/B fold5: per-fold predictions == consolidated OOF rows and n_test",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "mobilenet_v2/B fold5: n_train+n_test=3064",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "mobilenet_v2/B: train_seed 0 and 10 epochs for all folds",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "efficientnet_b0/A: 3064 OOF rows, ids/patients/folds/labels == split file",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "efficientnet_b0/A: finite probs in [0,1], rows sum to 1 (max dev 4.44e-16)",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "efficientnet_b0/A: pred_class == argmax(prob)",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "efficientnet_b0/A: no duplicated (image) rows",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "efficientnet_b0/A: 5 run records",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "efficientnet_b0/A efficientnet_b0_A_fold1_run.json: split_sha256 matches A",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "efficientnet_b0/A fold1: per-fold predictions == consolidated OOF rows and n_test",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "efficientnet_b0/A fold1: n_train+n_test=3064",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "efficientnet_b0/A efficientnet_b0_A_fold2_run.json: split_sha256 matches A",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "efficientnet_b0/A fold2: per-fold predictions == consolidated OOF rows and n_test",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "efficientnet_b0/A fold2: n_train+n_test=3064",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "efficientnet_b0/A efficientnet_b0_A_fold3_run.json: split_sha256 matches A",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "efficientnet_b0/A fold3: per-fold predictions == consolidated OOF rows and n_test",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "efficientnet_b0/A fold3: n_train+n_test=3064",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "efficientnet_b0/A efficientnet_b0_A_fold4_run.json: split_sha256 matches A",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "efficientnet_b0/A fold4: per-fold predictions == consolidated OOF rows and n_test",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "efficientnet_b0/A fold4: n_train+n_test=3064",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "efficientnet_b0/A efficientnet_b0_A_fold5_run.json: split_sha256 matches A",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "efficientnet_b0/A fold5: per-fold predictions == consolidated OOF rows and n_test",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "efficientnet_b0/A fold5: n_train+n_test=3064",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "efficientnet_b0/A: train_seed 0 and 10 epochs for all folds",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "efficientnet_b0/B: 3064 OOF rows, ids/patients/folds/labels == split file",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "efficientnet_b0/B: finite probs in [0,1], rows sum to 1 (max dev 5.55e-16)",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "efficientnet_b0/B: pred_class == argmax(prob)",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "efficientnet_b0/B: no duplicated (image) rows",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "efficientnet_b0/B: 5 run records",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "efficientnet_b0/B efficientnet_b0_B_fold1_run.json: split_sha256 matches B",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "efficientnet_b0/B fold1: per-fold predictions == consolidated OOF rows and n_test",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "efficientnet_b0/B fold1: n_train+n_test=3064",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "efficientnet_b0/B efficientnet_b0_B_fold2_run.json: split_sha256 matches B",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "efficientnet_b0/B fold2: per-fold predictions == consolidated OOF rows and n_test",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "efficientnet_b0/B fold2: n_train+n_test=3064",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "efficientnet_b0/B efficientnet_b0_B_fold3_run.json: split_sha256 matches B",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "efficientnet_b0/B fold3: per-fold predictions == consolidated OOF rows and n_test",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "efficientnet_b0/B fold3: n_train+n_test=3064",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "efficientnet_b0/B efficientnet_b0_B_fold4_run.json: split_sha256 matches B",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "efficientnet_b0/B fold4: per-fold predictions == consolidated OOF rows and n_test",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "efficientnet_b0/B fold4: n_train+n_test=3064",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "efficientnet_b0/B efficientnet_b0_B_fold5_run.json: split_sha256 matches B",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "efficientnet_b0/B fold5: per-fold predictions == consolidated OOF rows and n_test",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "efficientnet_b0/B fold5: n_train+n_test=3064",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "efficientnet_b0/B: train_seed 0 and 10 epochs for all folds",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "densenet121/A: 3064 OOF rows, ids/patients/folds/labels == split file",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "densenet121/A: finite probs in [0,1], rows sum to 1 (max dev 4.44e-16)",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "densenet121/A: pred_class == argmax(prob)",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "densenet121/A: no duplicated (image) rows",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "densenet121/A: 5 run records",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "densenet121/A densenet121_A_fold1_run.json: split_sha256 matches A",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "densenet121/A fold1: per-fold predictions == consolidated OOF rows and n_test",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "densenet121/A fold1: n_train+n_test=3064",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "densenet121/A densenet121_A_fold2_run.json: split_sha256 matches A",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "densenet121/A fold2: per-fold predictions == consolidated OOF rows and n_test",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "densenet121/A fold2: n_train+n_test=3064",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "densenet121/A densenet121_A_fold3_run.json: split_sha256 matches A",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "densenet121/A fold3: per-fold predictions == consolidated OOF rows and n_test",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "densenet121/A fold3: n_train+n_test=3064",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "densenet121/A densenet121_A_fold4_run.json: split_sha256 matches A",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "densenet121/A fold4: per-fold predictions == consolidated OOF rows and n_test",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "densenet121/A fold4: n_train+n_test=3064",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "densenet121/A densenet121_A_fold5_run.json: split_sha256 matches A",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "densenet121/A fold5: per-fold predictions == consolidated OOF rows and n_test",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "densenet121/A fold5: n_train+n_test=3064",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "densenet121/A: train_seed 0 and 10 epochs for all folds",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "densenet121/B: 3064 OOF rows, ids/patients/folds/labels == split file",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "densenet121/B: finite probs in [0,1], rows sum to 1 (max dev 4.44e-16)",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "densenet121/B: pred_class == argmax(prob)",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "densenet121/B: no duplicated (image) rows",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "densenet121/B: 5 run records",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "densenet121/B densenet121_B_fold1_run.json: split_sha256 matches B",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "densenet121/B fold1: per-fold predictions == consolidated OOF rows and n_test",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "densenet121/B fold1: n_train+n_test=3064",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "densenet121/B densenet121_B_fold2_run.json: split_sha256 matches B",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "densenet121/B fold2: per-fold predictions == consolidated OOF rows and n_test",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "densenet121/B fold2: n_train+n_test=3064",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "densenet121/B densenet121_B_fold3_run.json: split_sha256 matches B",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "densenet121/B fold3: per-fold predictions == consolidated OOF rows and n_test",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "densenet121/B fold3: n_train+n_test=3064",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "densenet121/B densenet121_B_fold4_run.json: split_sha256 matches B",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "densenet121/B fold4: per-fold predictions == consolidated OOF rows and n_test",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "densenet121/B fold4: n_train+n_test=3064",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "densenet121/B densenet121_B_fold5_run.json: split_sha256 matches B",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "densenet121/B fold5: per-fold predictions == consolidated OOF rows and n_test",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "densenet121/B fold5: n_train+n_test=3064",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "densenet121/B: train_seed 0 and 10 epochs for all folds",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "run inventory: 40 run records (10 ResNet50 + 30 new)",
+  "status": "PASS",
+  "detail": "total records counted = 40"
+ },
+ {
+  "check": "metrics_summary.csv point estimates == independent recompute",
+  "status": "PASS",
+  "detail": "max abs diff 3.89e-16"
+ },
+ {
+  "check": "per_class_metrics.csv == independent recompute",
+  "status": "PASS",
+  "detail": "max abs diff 2.22e-16"
+ },
+ {
+  "check": "confusion_matrices.csv == independent recompute",
+  "status": "PASS",
+  "detail": "max abs diff 0"
+ },
+ {
+  "check": "protocol_differences.csv point deltas == independent recompute",
+  "status": "PASS",
+  "detail": "max abs diff 3.64e-16"
+ },
+ {
+  "check": "MULTIMODEL_RESULTS.md headline table (40 cells) == independent recompute at 4 dp",
+  "status": "PASS",
+  "detail": "cells=40 mismatches=[]"
+ },
+ {
+  "check": "draws: shape (5000,233) and patient order == sorted ids",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "draws: patients are the resampling unit; per-class multiplicity totals == per-class patient counts, every replicate",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "draws: stored matrix == regeneration with seed 2026",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "metrics_summary.csv 95% percentile CIs == independent bootstrap on stored draws",
+  "status": "PASS",
+  "detail": "max abs diff 1.12e-15"
+ },
+ {
+  "check": "protocol_differences.csv paired CIs == independent",
+  "status": "PASS",
+  "detail": "max abs diff 8.05e-16"
+ },
+ {
+  "check": "pairwise_differences.csv (est, CI, fraction>0; 24 rows) == independent",
+  "status": "PASS",
+  "detail": "max abs diff 2.48e-16"
+ },
+ {
+  "check": "top_ranked_frequencies.csv == independent (ties split equally)",
+  "status": "PASS",
+  "detail": "max abs diff 0.00e+00"
+ },
+ {
+  "check": "ranking_summary.csv orders and Kendall tau-b == independent",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "no exact point-estimate ties (balanced_accuracy,A)",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "no exact point-estimate ties (balanced_accuracy,B)",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "no exact point-estimate ties (macro_f1,A)",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "no exact point-estimate ties (macro_f1,B)",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "fresh 20,000-rep bootstrap (new seed) reproduces published CIs within 0.003",
+  "status": "PASS",
+  "detail": "max |diff| 0.0015"
+ },
+ {
+  "check": "CLAIM BOUNDARY: ResNet50-DenseNet121 balanced_accuracy CI includes 0 under A (stored draws)",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "CLAIM BOUNDARY: ResNet50-DenseNet121 balanced_accuracy CI includes 0 under B (stored draws)",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "CLAIM BOUNDARY: ResNet50-DenseNet121 macro_f1 CI includes 0 under A (stored draws)",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "CLAIM BOUNDARY: ResNet50-DenseNet121 macro_f1 CI includes 0 under B (stored draws)",
+  "status": "PASS",
+  "detail": ""
+ }
+]
