@@ -30,7 +30,7 @@ def run_one(run_id, log):
     env = os.environ.copy(); env["TORCH_HOME"] = str(ROOT / "data/torch")
     cmd = ["caffeinate", "-i", "/usr/bin/nice", "-n", "10", sys.executable, str(ROOT / "experiments/extension/ext_runner.py"), run_id]
     p = subprocess.Popen(cmd, cwd=ROOT, env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, bufsize=1, start_new_session=True)
-    nxt = time.monotonic() + 15; reason = None
+    nxt = time.monotonic() + 15; reason = None; strikes = 0
     while True:
         if select.select([p.stdout], [], [], 1)[0]:
             line = p.stdout.readline()
@@ -38,10 +38,12 @@ def run_one(run_id, log):
         if p.poll() is not None: break
         if time.monotonic() >= nxt:
             try: reason = unsafe(host_snapshot())
-            except Exception as e: reason = f"responsiveness check failed: {e}"
-            if reason:
+            except Exception as e: log.write(f"monitor error (ignored, retry): {e}\n"); reason = None
+            strikes = strikes + 1 if reason else 0
+            if reason: log.write(f"unsafe reading {strikes}/3: {reason}\n")
+            if strikes >= 3:
                 log.write(f"SAFETY_STOP {reason}\n"); os.killpg(p.pid, signal.SIGINT); break
-            nxt = time.monotonic() + 15
+            nxt = time.monotonic() + 30
     try: rc = p.wait(timeout=60)
     except subprocess.TimeoutExpired: os.killpg(p.pid, signal.SIGTERM); rc = p.wait(timeout=15)
     for line in p.stdout: log.write(line)
@@ -50,12 +52,13 @@ def run_one(run_id, log):
 
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--only", default=""); ap.add_argument("--max-runs", type=int, default=10**9)
-    ap.add_argument("--push-every", type=int, default=6); ap.add_argument("--cooldown", type=int, default=30)
+    ap.add_argument("--push-every", type=int, default=9); ap.add_argument("--cooldown", type=int, default=15)
     a = ap.parse_args()
     LOGDIR.mkdir(parents=True, exist_ok=True)
     lock = open(LOGDIR / "driver.lock", "w")
     try: fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
     except BlockingIOError: raise SystemExit("another extension driver is active")
+    while subprocess.run(['pgrep','-f','ext_runner.py'],capture_output=True).stdout.strip(): time.sleep(20)
     done = new = 0; pending_files = []
     with open(LOGDIR / "driver.log", "a") as log:
         for rid in build_queue():
@@ -69,9 +72,9 @@ def main():
                 raise SystemExit(2)
             new += 1; pp, rp = paths(rid); pending_files += [str(pp.relative_to(ROOT)), str(rp.relative_to(ROOT))]
             print("DONE", rid, flush=True)
-            subprocess.run(["git", "add", "--", *pending_files], cwd=ROOT, check=True)
-            subprocess.run(["git", "commit", "-q", "-m", f"ext run {rid} verified"], cwd=ROOT, check=True); pending_files = []
             if new % a.push_every == 0:
+                subprocess.run(["git", "add", "--", *pending_files], cwd=ROOT)
+                subprocess.run(["git", "commit", "-q", "-m", f"ext batch: {new} runs verified (latest {rid})"], cwd=ROOT); pending_files = []
                 subprocess.run(["git", "push", "-q", "origin", "HEAD"], cwd=ROOT)
             time.sleep(a.cooldown)
     print(f"driver finished: previously_verified={done} new={new}", flush=True)
