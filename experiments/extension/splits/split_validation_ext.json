@@ -1,0 +1,135 @@
+{
+ "split_seeds": [
+  101,
+  202,
+  303
+ ],
+ "sets": {
+  "101": {
+   "A_sha256": "134382ed970f4ecc1e565b09476d7f6e3536b989e90ab34089ddfacea5a9d663",
+   "B_sha256": "fb6e602de13b350ec858a16e6f2b2cd0883c430dad66cc9b349975e6eab21c94",
+   "fold_class_counts_A": {
+    "1": {
+     "1": 142,
+     "2": 142,
+     "3": 141,
+     "4": 142,
+     "5": 141
+    },
+    "2": {
+     "1": 286,
+     "2": 285,
+     "3": 284,
+     "4": 286,
+     "5": 285
+    },
+    "3": {
+     "1": 185,
+     "2": 186,
+     "3": 187,
+     "4": 185,
+     "5": 187
+    }
+   },
+   "fold_sizes": {
+    "1": 613,
+    "2": 613,
+    "3": 612,
+    "4": 613,
+    "5": 613
+   },
+   "checks": {
+    "A_zero_patient_overlap": true,
+    "all_3064_once_A": true,
+    "all_3064_once_B": true,
+    "margins_matched": true,
+    "A_patients_cross_folds_in_B": 226,
+    "A_differs_from_historical": true
+   }
+  },
+  "202": {
+   "A_sha256": "60fb4e4373df7ade91dcecdc70fba80d9e27baa815d4a3efd93e34f6746ce331",
+   "B_sha256": "a4293e9fa713038a4957f30dd494d9d2d52d67c3185b28d537bfe1202714a59d",
+   "fold_class_counts_A": {
+    "1": {
+     "1": 142,
+     "2": 142,
+     "3": 142,
+     "4": 141,
+     "5": 141
+    },
+    "2": {
+     "1": 284,
+     "2": 286,
+     "3": 285,
+     "4": 285,
+     "5": 286
+    },
+    "3": {
+     "1": 185,
+     "2": 185,
+     "3": 186,
+     "4": 187,
+     "5": 187
+    }
+   },
+   "fold_sizes": {
+    "1": 611,
+    "2": 613,
+    "3": 613,
+    "4": 613,
+    "5": 614
+   },
+   "checks": {
+    "A_zero_patient_overlap": true,
+    "all_3064_once_A": true,
+    "all_3064_once_B": true,
+    "margins_matched": true,
+    "A_patients_cross_folds_in_B": 223,
+    "A_differs_from_historical": true
+   }
+  },
+  "303": {
+   "A_sha256": "ed094bcdba88cdc271de404fa729013227fac42b9fce4186722fcd7311b47f14",
+   "B_sha256": "904d46f72578832134fb0ac3fc841e52da1a9d6952ef60bc4fa52a3440d80084",
+   "fold_class_counts_A": {
+    "1": {
+     "1": 141,
+     "2": 142,
+     "3": 142,
+     "4": 142,
+     "5": 141
+    },
+    "2": {
+     "1": 286,
+     "2": 285,
+     "3": 284,
+     "4": 285,
+     "5": 286
+    },
+    "3": {
+     "1": 186,
+     "2": 185,
+     "3": 187,
+     "4": 185,
+     "5": 187
+    }
+   },
+   "fold_sizes": {
+    "1": 613,
+    "2": 612,
+    "3": 613,
+    "4": 612,
+    "5": 614
+   },
+   "checks": {
+    "A_zero_patient_overlap": true,
+    "all_3064_once_A": true,
+    "all_3064_once_B": true,
+    "margins_matched": true,
+    "A_patients_cross_folds_in_B": 223,
+    "A_differs_from_historical": true
+   }
+  }
+ }
+}
