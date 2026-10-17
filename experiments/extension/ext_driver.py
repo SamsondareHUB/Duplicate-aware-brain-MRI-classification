@@ -15,7 +15,7 @@ from ext_runner import verify, paths
 LOGDIR = ROOT / "results/extension"
 
 
-def preflight(timeout=180):
+def preflight(timeout=1800):
     end = time.monotonic() + timeout
     while True:
         s = host_snapshot(); r = unsafe(s)
@@ -23,7 +23,7 @@ def preflight(timeout=180):
         if s["pressure_free_pct"] is not None and s["pressure_free_pct"] < 35: r = r or "memory pressure free below 35% pre-fold"
         if r is None: return s
         if time.monotonic() > end: raise SystemExit(f"UNSAFE_PREFLIGHT: {r}; stopping (resume later)")
-        time.sleep(20)
+        time.sleep(60)
 
 
 def run_one(run_id, log):
