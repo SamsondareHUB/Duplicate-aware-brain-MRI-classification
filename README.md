@@ -29,9 +29,9 @@ python scripts/reproduce_from_predictions.py                      # 200 checks; 
 python scripts/ranking_reliability_extras.py                      # exploratory ranking diagnostics
 python scripts/pid_suffix_sensitivity.py                          # patient-ID-suffix provenance sensitivity
 python scripts/validate_patient_ids.py                            # patient-ID suffix validation (reports/PATIENT_ID_VALIDATION.md)
-python scripts/make_splits_209.py                                 # PROPOSED 209-group splits (not used for training); plan: reports/RETRAINING_PLAN_209_GROUPS.md
+python scripts/make_splits_209.py                                 # PROPOSED 209-group splits (not used for training); historical plan, NOT executed/cancelled: reports/RETRAINING_PLAN_209_GROUPS.md
 python scripts/run_retrain_209.py --dry-run                      # validate proposed splits + write 20-/40-run matrices (no training)
-python scripts/analyze_209.py --scenario repeated                # 209-group analysis (needs real 209 predictions; not yet available)
+python scripts/analyze_209.py --scenario repeated                # 209-group retraining analysis (cancelled; no 209 predictions exist)
 python -m pytest -q tests
 ```
 `reproduce_from_predictions.py` recomputes, from the committed out-of-fold (OOF) predictions and frozen splits only: split hashes and
@@ -59,7 +59,7 @@ value with the committed tables (`results/multimodel/*.csv`, `reports/MULTIMODEL
   Cite the dataset and the papers listed in its own `README 2024.txt` (Cheng et al., PLoS ONE 2015 and 2016 — check the exact references in that file).
 * 3,064 T1-weighted contrast-enhanced slices (meningioma 708, glioma 1,426, pituitary 930), 233 patients, 512×512 (15 images are 256×256, all from patient 108931).
 * `python scripts/download_figshare.py --extract` downloads ≈880 MB from the official Figshare API, verifies MD5s and extracts to the git-ignored `data/raw/`.
-  Raw MRI is never committed. Folds come from the dataset's `cvind.mat`; the file-order mapping is strongly empirically supported (0/233 patients span folds) but **not author-confirmed**.
+  Raw MRI is never committed. Folds come from the dataset's `cvind.mat`; the file-order mapping is strongly empirically supported (0/233 patients span folds) but the mapping itself is **not author-confirmed**. The dataset author has asked that the 233 patient IDs be treated as 233 different individuals (not independently verifiable; original DICOM unavailable). The 233-ID evaluation is the primary analysis; 209-group results are prediction-only robustness checks (`reports/PATIENT_ID_VALIDATION.md`).
 
 ## Full re-execution (needs raw data, PyTorch and an Apple-MPS or CUDA GPU; ~2.5 h for the 30 new runs on one Mac)
 ```sh

@@ -1,5 +1,7 @@
 # Final independent scientific audit
 
+> **Update (author clarification, see `reports/PATIENT_ID_VALIDATION.md` FINAL STATUS):** the dataset author asked that the 233 PIDs be treated as 233 different individuals, so the original 233-ID analysis is the primary analysis and the 209-group results are secondary robustness checks. The author could not verify identifiers (original DICOM unavailable), and the suffix meaning remains unexplained. No 209-group retraining was done. Statements below are the original audit record, left as written; "UNRESOLVED" regarding suffix identity is superseded in that sense only.
+
 Reviewed repository: `SamsondareHUB/Duplicate-aware-brain-MRI-classification`, `main` @ `14e7f75e3d516fc89d5b758442a611e86707b366` (PR #1, #2 merged; METHODS/RESULTS skeleton commits on top).
 Audit branch: `melody/final-scientific-assurance-v1`. Date: 2026-10-14. Reviewer: Melody (assisted by Claude).
 Dispositions: PASS · FIX · NEEDS_NEW_EVIDENCE · REFORMULATE · UNSUPPORTED. Status labels: CONFIRMED · STRONGLY SUPPORTED · THRESHOLD-DEPENDENT · UNRESOLVED.

@@ -1,3 +1,9 @@
+> ## FINAL DECISION NOTE
+> **Historical contingency plan — not executed.**
+> **Superseded following the dataset author's clarification and Sammie's decision to retain the 233-ID primary analysis.**
+>
+> Dr. Jun Cheng (dataset author) asked that the 233 patients be treated as 233 different individuals. No 20-run or 40-run 209-group retraining was started, and the alternative is also cancelled. The text below is preserved unchanged for provenance; its "PROPOSED", "unresolved" and "awaiting approval" wording reflects the state before the clarification. See `PATIENT_ID_VALIDATION.md` (FINAL STATUS).
+
 # 209-group retraining plan — PROPOSED, NOT EXECUTED (decision policy finalised by Sammie)
 
 **Status: nothing in this document has been trained or run. No checkpoint, prediction or metric from a 209-group model exists.** All manifests under `data/splits/proposed_209/` are labeled **PROPOSED / NOT YET USED FOR TRAINING**. Historical splits and PR #1/#2 outputs are unchanged (SHA-256 re-checked: A `61bec5aa…3e49e`, B `e8b0442c…74f2`). Branch: PR #3 branch (open, not merged). The split-selection algorithm (`minmove`, §3) still awaits Sammie's final approval; the manifests are unchanged and regenerate byte-identically (SHA-256 `6b8f98cc…6313` A209, `8fa98fd8…1c51` B209).

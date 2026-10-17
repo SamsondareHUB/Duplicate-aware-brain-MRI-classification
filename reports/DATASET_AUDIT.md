@@ -124,7 +124,7 @@ Observations:
 
 ## Issues requiring team decision (status)
 1. Terminology and construct are set: exact leakage absent; near-image duplicate leakage not established; patient-level overlap is the construct to test.
-2. `cvind` mapping: strongly supported but not author-confirmed. Optionally ask the dataset contact listed in the README.
+2. `cvind` mapping: strongly supported but not author-confirmed. (Update: the dataset contact replied that the 233 patients should be treated as 233 different individuals; the `cvind` mapping was not addressed. See `PATIENT_ID_VALIDATION.md`.)
 3. `MR`-prefixed ID / glioma association: UNRESOLVED provenance concern. Consider reporting results with and without it.
 4. 15 images at 256x256: decide the resize policy for model inputs.
 5. Original folds are imbalanced in size (542-679 images) and class mix; 233 patients means high patient-level variance.
