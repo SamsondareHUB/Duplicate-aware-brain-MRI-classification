@@ -2,7 +2,30 @@
 
 Reproduce: `python scripts/validate_patient_ids.py` (prediction/manifest-only; no raw MRI, no training). Outputs: `results/audit/patient_id/` (`patient_id_validation.json`, `suffix_sharing_groups.csv`, `raw_pid_table.csv`, `stem_table.csv`). Tests: `tests/test_patient_id_validation.py`. All numbers below are recomputed by the script from `image_manifest.csv` and the split files (manifest and split fold/label/PID alignment is asserted).
 
-## Decision: CASE C — suffix semantics UNRESOLVED
+## FINAL STATUS (author clarification received; supersedes the CASE C decision below)
+
+**Dataset author's reply (Dr. Jun Cheng, dataset author; quoted exactly):**
+> "Please treat the 233 patients as representing 233 different individuals, consistent with the published paper. Unfortunately, I can't find the original DICOM data, so I'm unable to verify the identifiers further."
+
+**Decision (Sammie):**
+1. The original **233-ID** five-fold patient-disjoint evaluation is the **PRIMARY** analysis. The 233 PID strings are treated as 233 individuals, as instructed by the dataset author.
+2. The **209-group** (hypothetical-stem) prediction-only analyses below are retained as **secondary robustness / sensitivity analyses**, with all measured numbers unchanged.
+3. **No 209-group retraining was performed**, and none is planned (the 20-run and 40-run contingency plans are cancelled; see `RETRAINING_PLAN_209_GROUPS.md`). No new model run of any kind was made for this closeout.
+4. PR #1 / PR #2 results, statistics and model rankings are unchanged.
+
+**Evidence status, kept distinct:**
+| Claim | Basis |
+|---|---|
+| The 233 PIDs denote 233 different individuals | **Author-supported** (personal communication from the dataset author; consistent with the published papers). **Not independently verified**: the original DICOM records are unavailable to the author, so the identifiers could not be checked further. |
+| The five original folds contain no PID in more than one fold (0/233) | **Independently measured** from the shipped metadata (`cvind` file-order mapping). The mapping itself was inferred; the author's reply does not address it, so it remains "strongly empirically supported", not author-confirmed. |
+| Counts of suffix-sharing groups, stems, cross-fold stems, exposed images, sensitivity results | **Independently measured** from the manifest and predictions (sections 1, 2, 4). Unchanged. |
+| What the trailing letters on `MR…` IDs denote | **Not established.** The author's reply does not explain them and the original records are unavailable. This report offers no explanation. |
+
+The author's statement settles how the project **treats** the identifiers; it is not a metadata-level proof that no two PIDs share an individual. The 209-group analyses therefore remain useful as a conservative robustness check, and the limitation is disclosed in the manuscript (`paper/AUTHOR_CONFIRMATION_HANDOFF.md`).
+
+*Everything below is the historical validation record, preserved as written at the time (pre-clarification). Where it says "UNRESOLVED", "CASE C" or "draft question … not sent", read that as superseded by this section. Its numerical results remain valid.*
+
+## Historical decision (pre-clarification): CASE C — suffix semantics UNRESOLVED
 Nothing we could find states what the trailing letters mean (§3). We therefore report raw-PID and hypothetical-stem results side by side, keep the uncertainty in the paper, and do **not** claim individual-level independence of the original folds. No retraining or split change was made.
 
 ## 1. Formats (233 raw PIDs, 3,064 image records)
@@ -35,7 +58,7 @@ These match the earlier audit (18 / 42 / 16 / 734), recomputed independently her
 | Cheng et al., PLoS ONE 10(10):e0140381 (2015) and 11(6):e0157112 (2016), read via web fetch | state records were de-identified, "233 patients", and that the five folds were made by randomly partitioning the **233 patients** so slices of one patient never span train/test; **no ID format or suffix explanation** |
 Status: *same individual, multiple scans* — **not confirmed**; *separate individuals* — **not confirmed**; **UNRESOLVED**. Observations (suggestive only, not evidence of identity): the shared 6-digit stem; suffix letters usually non-contiguous (B,D,E,G); 12/18 groups also contain the bare ID; the authors' own statement shows they treated the 233 raw IDs as the patient unit. Weak imaging evidence: none of the cross-ID pairs in the committed top-similarity tables (8 in the top-200 list, the 19 with NCC ≥ 0.90) is a same-stem pair (max cross-PID NCC 0.932) — uninformative, since those tables contain only the highest-similarity pairs.
 
-**Draft question for the dataset author (NOT sent; needs your approval):** "In `cjdata.PID` some IDs share a six-digit `MR` number and differ only by a trailing letter (e.g. MR024780B, MR024780D, MR024780E, MR024780G). Do these denote (a) the same patient imaged in different studies/sessions, (b) different patients, or (c) something else (e.g. lesion or series index)? Was the 233-patient count and the 5-fold `cvind.mat` partition built on the full string, or on the number stem? Contact per the README: Jun Cheng, Shenzhen University (chengjun583@qq.com)."
+**Draft question for the dataset author (historical draft; the author has since replied, see FINAL STATUS, and the suffix question itself was not answered):** "In `cjdata.PID` some IDs share a six-digit `MR` number and differ only by a trailing letter (e.g. MR024780B, MR024780D, MR024780E, MR024780G). Do these denote (a) the same patient imaged in different studies/sessions, (b) different patients, or (c) something else (e.g. lesion or series index)? Was the 233-patient count and the 5-fold `cvind.mat` partition built on the full string, or on the number stem? Contact per the README: Jun Cheng, Shenzhen University (chengjun583@qq.com)."
 
 ## 4. Impact on the experiment (protocol A = original folds; existing predictions only)
 | Interpretation | Identity groups | Groups crossing folds | Test images potentially exposed* | Class of exposed |
@@ -65,12 +88,12 @@ Exposed images are classified **no better** than the matched unexposed MR-glioma
 * Absolute patient-disjoint performance level: *uncertain* — if suffixed IDs are one person, protocol A may be mildly optimistic for 734 glioma images; no sign of this in the data, but not excluded. "Subject-disjoint" must not be claimed without qualification.
 * The A/B contrast itself would, if anything, be *understated* under CASE B (A would contain some overlap).
 
-## 5. Scientific cases
+## 5. Scientific cases (historical; the corrective experiment below was NOT executed and is cancelled)
 * **CASE A (verified distinct)**: not verified. * **CASE B (verified same individual)**: not verified. * **CASE C (unresolved): current.**
 Minimum corrected experiment *if* CASE B were confirmed (NOT executed, requires approval): regenerate the patient-disjoint arm with folds grouped by stem (`StratifiedGroupKFold`, 209 groups, matched fold sizes ±, seed fixed), keep the frozen recipe, and rerun protocol A for the four models = 4 × 5 = **20 runs ≈ 1.5 h** (4.4 min/run measured); the image-level arm B can stay (its matched sizes would need re-matching to the new fold sizes → +20 runs ≈ 1.5 h for a strictly matched comparison). Not needed under CASE A; not currently justified under CASE C.
 
-## 6. Recommended paper wording (CASE C)
+## 6. Recommended paper wording (historical CASE C draft; superseded by `paper/AUTHOR_CONFIRMATION_HANDOFF.md`)
 > "Patient identifiers are the dataset's `PID` strings (233 distinct values). The original five-fold partition has no PID in more than one fold. Forty-two PIDs (811 images, all glioma) share a six-digit MR number with at least one other PID and differ only by a trailing letter (209 distinct stems); sixteen such stems have PIDs in different folds (734 images). The dataset documentation does not state whether these denote one individual, so we cannot exclude subject overlap across the original folds for up to 23.96% of images. Sensitivity analyses on existing predictions (stem-clustered bootstrap; evaluation excluding potentially exposed images) did not change our conclusions; these are not substitutes for stem-disjoint retraining."
 
-## 7. Unresolved questions
+## 7. Open questions (historical list; item 1 was answered only in part by the author, see FINAL STATUS)
 1. Meaning of the suffix letters (author question drafted, unsent). 2. Whether `cvind` was built on full PID strings (consistent with 0/233 overlap and the paper's text; not proven for stems). 3. MR/glioma ID-format confound (accuracy gap numeric vs MR glioma). 4. Suffix groups' imaging similarity could be checked on raw data (NOT REEXECUTED; not done).

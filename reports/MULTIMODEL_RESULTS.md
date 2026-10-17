@@ -158,6 +158,6 @@ The trainer resumes verified complete folds and refuses incomplete or invalid fo
 
 1. One image-level split seed and one training seed were used. Patient bootstrap intervals do not include split or training randomness; MPS is not guaranteed bitwise deterministic.
 2. The A/B comparison is a protocol contrast. Fold composition changes along with patient overlap, so the results do not identify a per-image causal exposure effect.
-3. The original patient-disjoint mapping is strongly supported by its zero cross-fold patient overlap but is not author-confirmed; dataset provenance and site confounding remain unresolved.
+3. The original patient-disjoint mapping is strongly supported by its zero cross-fold patient overlap but is not author-confirmed; dataset provenance and site confounding remain unresolved. (Update: the dataset author has since asked that the 233 PIDs be treated as 233 different individuals, which could not be independently verified; see `PATIENT_ID_VALIDATION.md`.)
 4. ECE estimates near zero have resampling bias, and top-ranked frequencies are descriptive bootstrap selection frequencies, not posterior probabilities.
 5. All models use the frozen ten-epoch recipe; this controls the comparison but does not establish that any architecture is optimally tuned.
