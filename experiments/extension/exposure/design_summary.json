@@ -1,0 +1,58 @@
+{
+ "folds": [
+  2,
+  4
+ ],
+ "levels": [
+  0,
+  25,
+  50,
+  75,
+  100
+ ],
+ "min_slices": 4,
+ "donor_cap": 6,
+ "per_fold": {
+  "2": {
+   "fixed_test_images": 458,
+   "fixed_test_patients": 46,
+   "eligible_test_patients": 43,
+   "donor_images_total": 221,
+   "base_train_images": 1751,
+   "reservoir_patients": 43,
+   "control_same_idformat": 43,
+   "eligible_by_class": {
+    "1": 14,
+    "2": 17,
+    "3": 12
+   },
+   "levels": {
+    "25": 11,
+    "50": 21,
+    "75": 32,
+    "100": 43
+   }
+  },
+  "4": {
+   "fixed_test_images": 415,
+   "fixed_test_patients": 47,
+   "eligible_test_patients": 41,
+   "donor_images_total": 213,
+   "base_train_images": 1779,
+   "reservoir_patients": 41,
+   "control_same_idformat": 41,
+   "eligible_by_class": {
+    "1": 11,
+    "2": 18,
+    "3": 12
+   },
+   "levels": {
+    "25": 10,
+    "50": 21,
+    "75": 31,
+    "100": 41
+   }
+  }
+ },
+ "design_sha256": "5d4662ebc4795a7b35bc5fa894e1c834ed217bbe2743b985cec8580f3c243a00"
+}
