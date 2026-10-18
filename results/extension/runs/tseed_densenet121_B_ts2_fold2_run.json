@@ -1,0 +1,109 @@
+{
+ "run_id": "tseed_densenet121_B_ts2_fold2",
+ "group": "tseed",
+ "model": "densenet121",
+ "arm": "B",
+ "fold": 2,
+ "level": null,
+ "split_seed": null,
+ "train_seed": 2,
+ "split_file": "data/splits/imagelevel_seed11.csv",
+ "split_sha256": "e8b0442c107396fe66a989b8d448aa0e524c1c554823a711db3cc84beeee74f2",
+ "n_train": 2385,
+ "n_test": 679,
+ "runtime_s": 531.9451849460602,
+ "device": "mps",
+ "epochs": [
+  {
+   "epoch": 1,
+   "train_loss": 0.34998640276226106,
+   "train_acc": 0.8637316561844863,
+   "lr_end": 9.755282581475762e-05
+  },
+  {
+   "epoch": 2,
+   "train_loss": 0.11739731064257632,
+   "train_acc": 0.9572327044025157,
+   "lr_end": 9.045084971874727e-05
+  },
+  {
+   "epoch": 3,
+   "train_loss": 0.05650244841910508,
+   "train_acc": 0.9849056603773585,
+   "lr_end": 7.938926261462356e-05
+  },
+  {
+   "epoch": 4,
+   "train_loss": 0.05032926252740484,
+   "train_acc": 0.9849056603773585,
+   "lr_end": 6.545084971874731e-05
+  },
+  {
+   "epoch": 5,
+   "train_loss": 0.02382105273786206,
+   "train_acc": 0.9949685534591195,
+   "lr_end": 4.9999999999999975e-05
+  },
+  {
+   "epoch": 6,
+   "train_loss": 0.018669033703439142,
+   "train_acc": 0.9941299790356394,
+   "lr_end": 3.454915028125259e-05
+  },
+  {
+   "epoch": 7,
+   "train_loss": 0.009478408693525339,
+   "train_acc": 0.9983228511530399,
+   "lr_end": 2.061073738537634e-05
+  },
+  {
+   "epoch": 8,
+   "train_loss": 0.010321339057364053,
+   "train_acc": 0.9991614255765199,
+   "lr_end": 9.549150281252636e-06
+  },
+  {
+   "epoch": 9,
+   "train_loss": 0.007513385414842914,
+   "train_acc": 0.9991614255765199,
+   "lr_end": 2.4471741852423195e-06
+  },
+  {
+   "epoch": 10,
+   "train_loss": 0.011997187036466423,
+   "train_acc": 0.9966457023060796,
+   "lr_end": 0.0
+  }
+ ],
+ "test_acc_final": 0.9837997054491899,
+ "predictions_sha256": "288caa3c12ed52b4dfca504071e98d3af81000d222dea796a77324344214c150",
+ "weights": "IMAGENET1K_V1",
+ "config": {
+  "model": "torchvision.resnet50",
+  "weights": "IMAGENET1K_V1",
+  "input": 224,
+  "batch_size": 32,
+  "epochs": 10,
+  "optimizer": "AdamW",
+  "lr": 0.0001,
+  "weight_decay": 0.0001,
+  "schedule": "cosine (per-iteration, T_max=total steps, eta_min=0)",
+  "loss": "cross_entropy (no class weights)",
+  "augmentation": "hflip p=0.5; rotation uniform(-10,10) deg bilinear fill 0",
+  "train_seed": 0,
+  "early_stopping": false,
+  "model_selection": "none (final epoch)",
+  "eval_batch_size": 64,
+  "normalisation": "ImageNet mean/std on 3-channel replicate"
+ },
+ "experiment_input_commit": "da904bbf25dd05f0117ab701307f1a2e348fcbae",
+ "checkpoint": "data/ckpt/tseed_densenet121_B_ts2_fold2.pt",
+ "env": {
+  "python": "3.13.6",
+  "torch": "2.11.0",
+  "torchvision": "0.26.0",
+  "numpy": "2.3.2",
+  "pandas": "2.3.3",
+  "os": "macOS-15.6.1-arm64-arm-64bit-Mach-O"
+ }
+}
