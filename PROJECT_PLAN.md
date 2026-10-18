@@ -33,7 +33,7 @@ Details are in `reports/DATASET_AUDIT.md`, `reports/SANITY_EXPERIMENT.md` and `E
 - Cross-patient near-identical duplication: not supported by the current audit.
 - Near-duplicate threshold: not frozen.
 - Same-patient slice dependence: confirmed, and scientifically distinct from duplication (same-patient slices are not called near-duplicates).
-- Patient-disjoint original fold structure: strongly empirically supported (the `cvind` mapping gives 0 patients in more than one fold); not author-confirmed.
+- Patient-disjoint original fold structure: strongly empirically supported (the `cvind` mapping gives 0 patients in more than one fold); the `cvind` mapping itself is not author-confirmed. The dataset author has asked that the 233 PIDs be treated as 233 different individuals (not independently verifiable; see `reports/PATIENT_ID_VALIDATION.md`).
 - ResNet50 sanity experiment: image-level evaluation gave materially higher apparent performance and better apparent calibration than patient-disjoint evaluation; the pre-specified rule returned GO_TO_MULTI_MODEL. This is a single model, split seed and training seed, and says nothing yet about model rankings.
 
 ## Primary Evaluation Protocols
@@ -63,9 +63,7 @@ No exact-duplicate-aware or near-duplicate-aware model-training arm is planned u
 - EfficientNet-B0
 - DenseNet121
 
-ResNet50 has completed the initial sanity experiment.
-
-The next planned phase extends the SAME frozen protocol to MobileNetV2, EfficientNet-B0, and DenseNet121 in order to test model-ranking stability. These three models have not been run yet.
+All four models have been run under the same frozen protocol (ResNet50 in PR #1; MobileNetV2, EfficientNet-B0 and DenseNet121 in PR #2).
 
 ## Frozen Experimental Protocol
 
@@ -113,9 +111,9 @@ Unless a documented architecture-specific implementation requirement makes a cha
 
 ## Model-Ranking Analysis
 
-This is the next major analysis, not an established result. Model-ranking distortion has not yet been demonstrated.
+This analysis is complete (PR #2; `reports/MULTIMODEL_RESULTS.md`). See that report for what is and is not statistically established; the top-two ranking difference is not statistically conclusive.
 
-Planned analysis will assess:
+The analysis assessed:
 - whether architecture ordering changes between image-level and patient-disjoint evaluation
 - pairwise model superiority uncertainty
 - ranking stability across protocols
@@ -151,25 +149,29 @@ The duplicate audit provides a negative but important result: exact duplication 
 
 ## Current Status
 
+**Phase: experiments complete; moving to manuscript preparation.**
+
 Completed:
 - dataset selection
-- full dataset audit
-- duplicate / similarity audit
-- patient-disjoint fold validation
-- matched image-level split construction
-- ResNet50 sanity experiment
-- paired patient-bootstrap analysis
-- reproducibility package in PR #1
+- full dataset audit and duplicate / similarity audit (`reports/DATASET_AUDIT.md`)
+- patient-disjoint fold validation and matched image-level split construction
+- ResNet50 sanity experiment and paired patient-bootstrap analysis (PR #1)
+- all 40 original model runs: 4 architectures x 5 folds x 2 protocols (ResNet50 from PR #1, 30 new runs in PR #2)
+- multi-model statistical analysis: paired patient bootstrap, calibration, per-class results, ranking-stability diagnostics (PR #2)
+- independent reproducibility check from committed predictions (`scripts/reproduce_from_predictions.py`, 200/200 checks) and independent audit (`reports/FINAL_INDEPENDENT_AUDIT.md`)
+- patient-ID (PID) validation and prediction-only 209-group sensitivity analyses (PR #3; `reports/PATIENT_ID_VALIDATION.md`)
+- dataset-author clarification (Dr. Jun Cheng): treat the 233 patients as 233 different individuals; original DICOM data unavailable, so identifiers could not be verified further
 
-Current decision: GO_TO_MULTI_MODEL (approved by Sammie; multi-model phase not yet launched)
+Evaluation hierarchy (decided by Sammie):
+- **PRIMARY:** original 233-ID five-fold patient-disjoint evaluation (protocol A) versus matched image-level evaluation (protocol B). PR #1 / PR #2 results, statistics and rankings are preserved unchanged.
+- **SECONDARY (robustness):** 209-group prediction-only sensitivity analyses (stem-clustered bootstrap, exposed-image subset, exposed-vs-unexposed accuracy). These are existing-prediction analyses, not retraining.
+- **Not required under the current team decision:** 209-group retraining (20-run and 40-run plans cancelled; `reports/RETRAINING_PLAN_209_GROUPS.md` is a historical contingency plan, not executed). No 209-group model has been trained.
 
-Next:
-- team review of PR #1
-- freeze/finalize multi-model experiment specification
-- extend unchanged protocol to MobileNetV2, EfficientNet-B0 and DenseNet121
-- evaluate model-ranking stability
+Limits that remain (to be disclosed in the paper): the author's statement is not an independent metadata verification; the meaning of the `MR…` letter suffixes is not established; the `cvind` file-order mapping is not author-confirmed; the MR-prefix / glioma association is an unresolved source confound; single image-level split seed (11) and single training seed (0).
 
-## Timeline
+Next: **manuscript preparation.** See `paper/AUTHOR_CONFIRMATION_HANDOFF.md` for publication-ready wording and the list of unfinished Methods/Results placeholders.
+
+## Timeline (original sprint plan; experiments and analysis phases are now complete)
 
 A rapid two-person research sprint of roughly 2-3 weeks, scoped to four architectures under the two matched protocols. No large benchmark expansion is planned.
 
