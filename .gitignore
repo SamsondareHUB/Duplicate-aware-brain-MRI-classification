@@ -230,3 +230,4 @@ results/multimodel/train.lock
 
 # Full permissive near-duplicate candidate table: regenerable local intermediate (6.7 MB)
 reports/manifests/near_duplicate_candidates.csv
+data/ckpt/
